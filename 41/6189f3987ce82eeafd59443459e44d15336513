@@ -1,0 +1,173 @@
+src/carepilot/ml/predict.py
+  s_844951ddc8cef6::t_a2a856a6cf8a06 130-144,155
+tests/unit/test_answer.py
+  s_844951ddc8cef6::t_88eced29d9b5dd 122-128
+tests/e2e/pages.py
+  s_844951ddc8cef6::t_5534ffab5f8017 1-26,29-41,43-94
+  s_844951ddc8cef6::t_fcd0b8e181e31d 42
+  s_844951ddc8cef6::t_76d8eccf9d5550 27-28
+reports/rag_eval_e2e_ollama.json
+  s_844951ddc8cef6::t_d89b4eeec49741 1-496
+tests/e2e/conftest.py
+  s_844951ddc8cef6::t_8c1f57f7106dd2 1-72
+Dockerfile
+  s_844951ddc8cef6::t_ccc941a423985d 1-38
+.github/workflows/ci.yml
+  s_844951ddc8cef6::t_bdcf7c4965d4bc 1-66
+tests/e2e/test_app.py
+  s_844951ddc8cef6::t_0404b47e3c2986 1-72
+tests/integration/test_pipelines.py
+  s_844951ddc8cef6::t_a2a856a6cf8a06 1-141
+tests/unit/test_predict.py
+  s_844951ddc8cef6::t_a2a856a6cf8a06 85-96
+reports/rag_eval.md
+  s_844951ddc8cef6::t_d89b4eeec49741 41
+.dockerignore
+  s_844951ddc8cef6::t_2528624caa85b8 1-14
+src/carepilot/rag/answer.py
+  s_844951ddc8cef6::t_88eced29d9b5dd 41,43-45,166,192-196,198-200
+app/streamlit_app.py
+  s_844951ddc8cef6::t_f6778e19c87062 1-298
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "autter_version": "2.2.0",
+  "base_commit_sha": "416189f3987ce82eeafd59443459e44d15336513",
+  "branch": "main",
+  "prompts": {
+    "s_844951ddc8cef6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "252a332e-55a3-40c3-b7cf-f20c78213b7e",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "kodebyshubh <shubhbohra44@gmail.com>",
+      "messages_url": "cas:6fc1e9bbaa32c6e6159e1a9fda25366b2823d5aa7198a31f42bb26f3a0067923",
+      "total_additions": 1375,
+      "total_deletions": 43,
+      "accepted_lines": 1865,
+      "overriden_lines": 13
+    }
+  },
+  "sessions": {
+    "s_844951ddc8cef6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "252a332e-55a3-40c3-b7cf-f20c78213b7e",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "kodebyshubh <shubhbohra44@gmail.com>",
+      "messages_url": "cas:6fc1e9bbaa32c6e6159e1a9fda25366b2823d5aa7198a31f42bb26f3a0067923",
+      "stats": {
+        "total_additions": 1375,
+        "total_deletions": 43,
+        "accepted_lines": 1865,
+        "overriden_lines": 13,
+        "files": {
+          ".dockerignore": {
+            "total_additions": 14,
+            "total_deletions": 0,
+            "accepted_lines": 14,
+            "overriden_lines": 0
+          },
+          ".github/workflows/ci.yml": {
+            "total_additions": 66,
+            "total_deletions": 0,
+            "accepted_lines": 66,
+            "overriden_lines": 0
+          },
+          "Dockerfile": {
+            "total_additions": 38,
+            "total_deletions": 0,
+            "accepted_lines": 38,
+            "overriden_lines": 0
+          },
+          "app/streamlit_app.py": {
+            "total_additions": 325,
+            "total_deletions": 27,
+            "accepted_lines": 298,
+            "overriden_lines": 0
+          },
+          "reports/rag_eval.md": {
+            "total_additions": 1,
+            "total_deletions": 0,
+            "accepted_lines": 43,
+            "overriden_lines": 0
+          },
+          "reports/rag_eval_e2e_ollama.json": {
+            "total_additions": 496,
+            "total_deletions": 0,
+            "accepted_lines": 496,
+            "overriden_lines": 0
+          },
+          "src/carepilot/ml/predict.py": {
+            "total_additions": 16,
+            "total_deletions": 1,
+            "accepted_lines": 175,
+            "overriden_lines": 0
+          },
+          "src/carepilot/rag/answer.py": {
+            "total_additions": 13,
+            "total_deletions": 7,
+            "accepted_lines": 205,
+            "overriden_lines": 0
+          },
+          "tests/e2e/conftest.py": {
+            "total_additions": 72,
+            "total_deletions": 0,
+            "accepted_lines": 72,
+            "overriden_lines": 0
+          },
+          "tests/e2e/pages.py": {
+            "total_additions": 96,
+            "total_deletions": 2,
+            "accepted_lines": 94,
+            "overriden_lines": 0
+          },
+          "tests/e2e/test_app.py": {
+            "total_additions": 72,
+            "total_deletions": 0,
+            "accepted_lines": 72,
+            "overriden_lines": 0
+          },
+          "tests/integration/test_pipelines.py": {
+            "total_additions": 147,
+            "total_deletions": 6,
+            "accepted_lines": 141,
+            "overriden_lines": 0
+          },
+          "tests/unit/test_answer.py": {
+            "total_additions": 7,
+            "total_deletions": 0,
+            "accepted_lines": 7,
+            "overriden_lines": 0
+          },
+          "tests/unit/test_predict.py": {
+            "total_additions": 12,
+            "total_deletions": 0,
+            "accepted_lines": 12,
+            "overriden_lines": 0
+          },
+          "zdnd/implementation_plan.md": {
+            "total_additions": 0,
+            "total_deletions": 0,
+            "accepted_lines": 56,
+            "overriden_lines": 13
+          },
+          "zdnd/memory.md": {
+            "total_additions": 0,
+            "total_deletions": 0,
+            "accepted_lines": 35,
+            "overriden_lines": 0
+          },
+          "zdnd/prd.md": {
+            "total_additions": 0,
+            "total_deletions": 0,
+            "accepted_lines": 41,
+            "overriden_lines": 0
+          }
+        }
+      }
+    }
+  }
+}
