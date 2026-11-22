@@ -6,9 +6,7 @@ from carepilot.ml.datasets import DIABETES, HEART, clean, get_spec
 
 
 def test_pima_impossible_zeros_become_missing_but_pregnancies_zero_stays():
-    df = pd.DataFrame(
-        {c: [0, 5] for c in DIABETES.numeric} | {"Outcome": [0, 1]}
-    )
+    df = pd.DataFrame({c: [0, 5] for c in DIABETES.numeric} | {"Outcome": [0, 1]})
     out = clean(df, DIABETES)
     for col in DIABETES.zero_as_missing:
         assert np.isnan(out.loc[0, col])

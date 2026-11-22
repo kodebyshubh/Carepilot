@@ -1,6 +1,7 @@
 from carepilot.rag.ingest import html_to_markdown
 
-HTML = """
+HTML = (
+    """
 <html><body>
 <nav>Home | About</nav>
 <main>
@@ -10,13 +11,16 @@ HTML = """
   <ul><li>are age 35 or older</li><li>have a family history 2</li></ul>
   <h2>Share</h2>
   <script>alert('x')</script>
-  <p>""" + "Filler sentence to make the main block long enough. " * 12 + """</p>
+  <p>"""
+    + "Filler sentence to make the main block long enough. " * 12
+    + """</p>
   <h2>References</h2>
   <p>Some citation list.</p>
 </main>
 <footer>Contact us</footer>
 </body></html>
 """
+)
 
 
 def test_keeps_headings_paragraphs_and_bullets():

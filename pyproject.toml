@@ -54,6 +54,7 @@ target-version = "py311"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "SIM"]
+ignore = ["E501"]  # ruff format enforces length; long URLs/strings exempt
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

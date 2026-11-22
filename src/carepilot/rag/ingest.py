@@ -37,49 +37,112 @@ class DocSource:
 
 
 SOURCES: tuple[DocSource, ...] = (
-    DocSource("niddk_diabetes_symptoms", "Symptoms & Causes of Diabetes", "NIDDK (NIH)",
-              "https://www.niddk.nih.gov/health-information/diabetes/overview/symptoms-causes",
-              NIH_LICENSE, ("diabetes", "symptoms")),
-    DocSource("niddk_t2d_risk_factors", "Risk Factors for Type 2 Diabetes", "NIDDK (NIH)",
-              "https://www.niddk.nih.gov/health-information/diabetes/overview/risk-factors-type-2-diabetes",
-              NIH_LICENSE, ("diabetes", "risk factors")),
-    DocSource("niddk_t2d_prevention", "Preventing Type 2 Diabetes", "NIDDK (NIH)",
-              "https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-type-2-diabetes",
-              NIH_LICENSE, ("diabetes", "prevention", "lifestyle")),
-    DocSource("niddk_managing_diabetes", "Managing Diabetes", "NIDDK (NIH)",
-              "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes",
-              NIH_LICENSE, ("diabetes", "management", "lifestyle")),
-    DocSource("nhlbi_hbp_causes", "High Blood Pressure: Causes and Risk Factors", "NHLBI (NIH)",
-              "https://www.nhlbi.nih.gov/health/high-blood-pressure/causes",
-              NIH_LICENSE, ("hypertension", "risk factors")),
-    DocSource("nhlbi_hbp_treatment", "High Blood Pressure: Treatment", "NHLBI (NIH)",
-              "https://www.nhlbi.nih.gov/health/high-blood-pressure/treatment",
-              NIH_LICENSE, ("hypertension", "treatment", "lifestyle")),
-    DocSource("nhlbi_chd_risk_factors", "Coronary Heart Disease: Risk Factors", "NHLBI (NIH)",
-              "https://www.nhlbi.nih.gov/health/coronary-heart-disease/risk-factors",
-              NIH_LICENSE, ("heart disease", "risk factors")),
-    DocSource("nhlbi_heart_attack_symptoms", "Heart Attack: Symptoms", "NHLBI (NIH)",
-              "https://www.nhlbi.nih.gov/health/heart-attack/symptoms",
-              NIH_LICENSE, ("heart disease", "symptoms", "emergency")),
-    DocSource("who_hypertension", "Hypertension (fact sheet)", "World Health Organization",
-              "https://www.who.int/news-room/fact-sheets/detail/hypertension",
-              WHO_LICENSE, ("hypertension",)),
-    DocSource("who_diabetes", "Diabetes (fact sheet)", "World Health Organization",
-              "https://www.who.int/news-room/fact-sheets/detail/diabetes",
-              WHO_LICENSE, ("diabetes",)),
+    DocSource(
+        "niddk_diabetes_symptoms",
+        "Symptoms & Causes of Diabetes",
+        "NIDDK (NIH)",
+        "https://www.niddk.nih.gov/health-information/diabetes/overview/symptoms-causes",
+        NIH_LICENSE,
+        ("diabetes", "symptoms"),
+    ),
+    DocSource(
+        "niddk_t2d_risk_factors",
+        "Risk Factors for Type 2 Diabetes",
+        "NIDDK (NIH)",
+        "https://www.niddk.nih.gov/health-information/diabetes/overview/risk-factors-type-2-diabetes",
+        NIH_LICENSE,
+        ("diabetes", "risk factors"),
+    ),
+    DocSource(
+        "niddk_t2d_prevention",
+        "Preventing Type 2 Diabetes",
+        "NIDDK (NIH)",
+        "https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-type-2-diabetes",
+        NIH_LICENSE,
+        ("diabetes", "prevention", "lifestyle"),
+    ),
+    DocSource(
+        "niddk_managing_diabetes",
+        "Managing Diabetes",
+        "NIDDK (NIH)",
+        "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes",
+        NIH_LICENSE,
+        ("diabetes", "management", "lifestyle"),
+    ),
+    DocSource(
+        "nhlbi_hbp_causes",
+        "High Blood Pressure: Causes and Risk Factors",
+        "NHLBI (NIH)",
+        "https://www.nhlbi.nih.gov/health/high-blood-pressure/causes",
+        NIH_LICENSE,
+        ("hypertension", "risk factors"),
+    ),
+    DocSource(
+        "nhlbi_hbp_treatment",
+        "High Blood Pressure: Treatment",
+        "NHLBI (NIH)",
+        "https://www.nhlbi.nih.gov/health/high-blood-pressure/treatment",
+        NIH_LICENSE,
+        ("hypertension", "treatment", "lifestyle"),
+    ),
+    DocSource(
+        "nhlbi_chd_risk_factors",
+        "Coronary Heart Disease: Risk Factors",
+        "NHLBI (NIH)",
+        "https://www.nhlbi.nih.gov/health/coronary-heart-disease/risk-factors",
+        NIH_LICENSE,
+        ("heart disease", "risk factors"),
+    ),
+    DocSource(
+        "nhlbi_heart_attack_symptoms",
+        "Heart Attack: Symptoms",
+        "NHLBI (NIH)",
+        "https://www.nhlbi.nih.gov/health/heart-attack/symptoms",
+        NIH_LICENSE,
+        ("heart disease", "symptoms", "emergency"),
+    ),
+    DocSource(
+        "who_hypertension",
+        "Hypertension (fact sheet)",
+        "World Health Organization",
+        "https://www.who.int/news-room/fact-sheets/detail/hypertension",
+        WHO_LICENSE,
+        ("hypertension",),
+    ),
+    DocSource(
+        "who_diabetes",
+        "Diabetes (fact sheet)",
+        "World Health Organization",
+        "https://www.who.int/news-room/fact-sheets/detail/diabetes",
+        WHO_LICENSE,
+        ("diabetes",),
+    ),
 )
 
 # Elements that never carry article content.
-DROP_TAGS = ("script", "style", "nav", "header", "footer", "aside", "form", "noscript",
-             "svg", "button", "iframe", "figure")
+DROP_TAGS = (
+    "script",
+    "style",
+    "nav",
+    "header",
+    "footer",
+    "aside",
+    "form",
+    "noscript",
+    "svg",
+    "button",
+    "iframe",
+    "figure",
+)
 # Boilerplate lines seen on NIH / WHO pages.
 BOILERPLATE = re.compile(
     r"^(share|print|email|on this page|related|last reviewed|related diabetes topics|"
     r"this content is provided as a service|clinical trials|was this page helpful)",
     re.IGNORECASE,
 )
-TRAILER = re.compile(r"\n#{1,4} (References|Clinical Trials|Related Topics|WHO response)\b.*",
-                     re.DOTALL)
+TRAILER = re.compile(
+    r"\n#{1,4} (References|Clinical Trials|Related Topics|WHO response)\b.*", re.DOTALL
+)
 
 
 def fetch_html(src: DocSource) -> str:
@@ -149,8 +212,13 @@ def main() -> None:
         md = re.sub(rf"^# {re.escape(src.title)}\s*\n", "", md)  # page h1 duplicates our header
         header = f"# {src.title}\n\nSource: {src.publisher}, {src.url}\n\n"
         (DOCS_CLEAN_DIR / f"{src.doc_id}.md").write_text(header + md, encoding="utf-8")
-        manifest.append({**asdict(src), "chars": len(md),
-                         "retrieved_utc": datetime.now(UTC).isoformat(timespec="seconds")})
+        manifest.append(
+            {
+                **asdict(src),
+                "chars": len(md),
+                "retrieved_utc": datetime.now(UTC).isoformat(timespec="seconds"),
+            }
+        )
         log.info("%-30s %6d chars", src.doc_id, len(md))
     (DOCS_CLEAN_DIR / "manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
 

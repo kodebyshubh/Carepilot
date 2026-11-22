@@ -1,0 +1,59 @@
+{
+  "disease": "diabetes",
+  "display_name": "Type 2 diabetes (Pima Indians Diabetes dataset)",
+  "selected_model": "Logistic Regression",
+  "selected_key": "logreg",
+  "selection_reason": "Logistic Regression had the highest mean CV ROC-AUC (0.840) and no simpler model was within one standard error.",
+  "threshold": 0.23,
+  "threshold_rule": "highest threshold with recall >= 85% on 5-fold out-of-fold training predictions (screening sensitivity target)",
+  "feature_order": [
+    "Pregnancies",
+    "Glucose",
+    "BloodPressure",
+    "SkinThickness",
+    "Insulin",
+    "BMI",
+    "DiabetesPedigreeFunction",
+    "Age"
+  ],
+  "feature_groups": {
+    "Pregnancies": [
+      0
+    ],
+    "Glucose": [
+      1,
+      8
+    ],
+    "BloodPressure": [
+      2,
+      9
+    ],
+    "SkinThickness": [
+      3,
+      10
+    ],
+    "Insulin": [
+      4,
+      11
+    ],
+    "BMI": [
+      5,
+      12
+    ],
+    "DiabetesPedigreeFunction": [
+      6
+    ],
+    "Age": [
+      7
+    ]
+  },
+  "n_train": 614,
+  "n_test": 154,
+  "positive_rate": 0.3489583333333333,
+  "trained_utc": "2026-11-22T16:12:57+00:00",
+  "versions": {
+    "python": "3.11.15",
+    "sklearn": "1.9.1",
+    "xgboost": "3.2.0"
+  }
+}

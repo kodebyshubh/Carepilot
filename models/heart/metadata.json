@@ -1,0 +1,87 @@
+{
+  "disease": "heart",
+  "display_name": "Coronary heart disease (UCI Cleveland dataset)",
+  "selected_model": "Logistic Regression",
+  "selected_key": "logreg",
+  "selection_reason": "Logistic Regression had the highest mean CV ROC-AUC (0.911) and no simpler model was within one standard error.",
+  "threshold": 0.38,
+  "threshold_rule": "highest threshold with recall >= 85% on 5-fold out-of-fold training predictions (screening sensitivity target)",
+  "feature_order": [
+    "age",
+    "trestbps",
+    "chol",
+    "thalach",
+    "oldpeak",
+    "ca",
+    "sex",
+    "cp",
+    "fbs",
+    "restecg",
+    "exang",
+    "slope",
+    "thal"
+  ],
+  "feature_groups": {
+    "age": [
+      0
+    ],
+    "trestbps": [
+      1
+    ],
+    "chol": [
+      2
+    ],
+    "thalach": [
+      3
+    ],
+    "oldpeak": [
+      4
+    ],
+    "ca": [
+      5,
+      6
+    ],
+    "sex": [
+      7,
+      8
+    ],
+    "cp": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "fbs": [
+      13,
+      14
+    ],
+    "restecg": [
+      15,
+      16,
+      17
+    ],
+    "exang": [
+      18,
+      19
+    ],
+    "slope": [
+      20,
+      21,
+      22
+    ],
+    "thal": [
+      23,
+      24,
+      25
+    ]
+  },
+  "n_train": 242,
+  "n_test": 61,
+  "positive_rate": 0.45874587458745875,
+  "trained_utc": "2026-11-22T16:14:26+00:00",
+  "versions": {
+    "python": "3.11.15",
+    "sklearn": "1.9.1",
+    "xgboost": "3.2.0"
+  }
+}

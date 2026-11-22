@@ -69,13 +69,27 @@ def bootstrap_metrics(
     }
 
 
-def select_threshold(y_true: np.ndarray, proba: np.ndarray, beta: float = 2.0) -> float:
-    """Threshold maximizing F-beta on out-of-fold predictions.
+TARGET_RECALL = 0.85
 
-    beta=2 weights recall twice as much as precision: in screening, a missed case
-    (false negative) costs more than an unnecessary follow-up test (false positive).
+
+def select_threshold(
+    y_true: np.ndarray, proba: np.ndarray, target_recall: float = TARGET_RECALL
+) -> float:
+    """Highest threshold whose recall on out-of-fold predictions is at least target_recall.
+
+    Screening logic: fix the sensitivity we refuse to go below (a missed case costs more
+    than an extra follow-up test), then take the highest threshold that still meets it,
+    which gives the best precision under that constraint. Falls back to max F2 if the
+    target is unreachable.
     """
-    scores = [fbeta_score(y_true, (proba >= t).astype(int), beta=beta) for t in THRESHOLD_GRID]
+    feasible = [
+        t
+        for t in THRESHOLD_GRID
+        if recall_score(y_true, (proba >= t).astype(int), zero_division=0) >= target_recall
+    ]
+    if feasible:
+        return float(max(feasible))
+    scores = [fbeta_score(y_true, (proba >= t).astype(int), beta=2) for t in THRESHOLD_GRID]
     return float(THRESHOLD_GRID[int(np.argmax(scores))])
 
 
@@ -113,8 +127,12 @@ def plot_confusion(
 ) -> None:
     fig, ax = plt.subplots(figsize=(4, 4))
     ConfusionMatrixDisplay.from_predictions(
-        y_true, (proba >= threshold).astype(int), display_labels=["No", "Yes"],
-        ax=ax, colorbar=False, cmap="Blues",
+        y_true,
+        (proba >= threshold).astype(int),
+        display_labels=["No", "Yes"],
+        ax=ax,
+        colorbar=False,
+        cmap="Blues",
     )
     ax.set_title(title)
     fig.tight_layout()
