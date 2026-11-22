@@ -119,3 +119,10 @@ def test_rrf_rewards_agreement_between_rankers():
     fused = rrf([[1, 2, 3], [3, 1, 4]])
     assert fused[0][0] == 1  # ranks 1 and 2
     assert {d for d, _ in fused} == {1, 2, 3, 4}
+
+
+def test_cited_answer_with_appended_sentinel_is_kept():
+    reply = f"Thirst is common [1].\n\n{SENTINEL}"
+    ans = answer_question("q", FakeRetriever(HITS), FakeLLM(reply), threshold=-3)
+    assert not ans.abstained
+    assert SENTINEL not in ans.text and "partial coverage" in ans.reason

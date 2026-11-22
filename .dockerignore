@@ -1,0 +1,14 @@
+.venv
+.git
+.github
+zdnd
+CLAUDE.md
+.env
+tests
+test-results
+.pytest_cache
+.ruff_cache
+.coverage
+htmlcov
+**/__pycache__
+docs

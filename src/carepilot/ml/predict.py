@@ -127,6 +127,21 @@ def validate_patient(spec: DiseaseSpec, patient: dict[str, Any]) -> dict[str, fl
     return clean
 
 
+def positive_class_shap(values: Any) -> np.ndarray:
+    """SHAP values for the positive class of a single row, shape (n_features,).
+
+    Explainers disagree on output shape: linear and XGBoost give (rows, features); sklearn
+    forests give (rows, features, classes) or, in older shap, a list per class. Flattening
+    blindly would interleave the two classes and scramble the attribution.
+    """
+    if isinstance(values, list):  # older shap: one array per class
+        values = values[-1]
+    arr = np.asarray(values)
+    if arr.ndim == 3:
+        arr = arr[..., -1]
+    return arr[0]
+
+
 def predict_risk(disease: str, patient: dict[str, Any]) -> RiskResult:
     spec = get_spec(disease)
     values = validate_patient(spec, patient)
@@ -137,7 +152,7 @@ def predict_risk(disease: str, patient: dict[str, Any]) -> RiskResult:
     proba = float(model.pipeline.predict_proba(row)[0, 1])
 
     transformed = model.pipeline.named_steps["prep"].transform(row)
-    shap_row = np.asarray(model.explainer.shap_values(transformed)).reshape(-1)
+    shap_row = positive_class_shap(model.explainer.shap_values(transformed))
     groups: dict[str, list[int]] = model.metadata["feature_groups"]
     factors = [
         Factor(

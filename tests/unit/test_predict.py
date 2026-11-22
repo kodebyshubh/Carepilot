@@ -82,3 +82,15 @@ def test_all_errors_collected_at_once():
     with pytest.raises(PatientValidationError) as exc:
         validate_patient(DIABETES, {"Glucose": 0, "BMI": 500})
     assert len(exc.value.errors) == 2
+
+
+def test_positive_class_shap_handles_explainer_output_shapes():
+    import numpy as np
+
+    from carepilot.ml.predict import positive_class_shap
+
+    two_d = np.array([[1.0, 2.0, 3.0]])
+    three_d = np.stack([-two_d, two_d], axis=-1)  # (rows, features, classes)
+    as_list = [-two_d, two_d]
+    for v in (two_d, three_d, as_list):
+        assert positive_class_shap(v).tolist() == [1.0, 2.0, 3.0]
