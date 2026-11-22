@@ -39,7 +39,7 @@ def base_url() -> Iterator[str]:
     proc = subprocess.Popen(
         [sys.executable, "-m", "streamlit", "run", str(ROOT / "app" / "streamlit_app.py"),
          "--server.headless", "true", "--server.port", str(port),
-         "--browser.gatherUsageStats", "false"],
+         "--browser.gatherUsageStats", "false", "--server.fileWatcherType", "none"],
         cwd=ROOT, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
     )  # fmt: skip
     url = f"http://127.0.0.1:{port}"
