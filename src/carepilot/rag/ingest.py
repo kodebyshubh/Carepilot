@@ -140,6 +140,7 @@ BOILERPLATE = re.compile(
     r"this content is provided as a service|clinical trials|was this page helpful)",
     re.IGNORECASE,
 )
+LANGUAGE_SWITCHER = frozenset({"Language switcher", "English", "Español"})
 TRAILER = re.compile(
     r"\n#{1,4} (References|Clinical Trials|Related Topics|WHO response)\b.*", re.DOTALL
 )
@@ -173,7 +174,7 @@ def html_to_markdown(html: str) -> str:
         if el.name in ("p", "li") and el.find_parent("li") is not None:
             continue
         text = re.sub(r"\s+", " ", el.get_text(" ", strip=True)).strip()
-        if not text or BOILERPLATE.match(text):
+        if not text or BOILERPLATE.match(text) or text in LANGUAGE_SWITCHER:
             continue
         if el.name in ("h1", "h2", "h3", "h4"):
             level = {"h1": "#", "h2": "##", "h3": "###", "h4": "####"}[el.name]
