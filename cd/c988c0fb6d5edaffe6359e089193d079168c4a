@@ -1,0 +1,92 @@
+README.md
+  s_844951ddc8cef6::t_0a567eb0d490f3 23,243-244
+  s_844951ddc8cef6::t_b4750e1e3f207c 2-22,24-242,245-307
+scripts/capture_screenshots.py
+  s_844951ddc8cef6::t_5175fcac803779 3-11,16-17,34-75,79-83
+tests/e2e/conftest.py
+  s_844951ddc8cef6::t_62ed3751af58f5 42
+docs/demo_script.md
+  s_844951ddc8cef6::t_10751c3d536a87 1-15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "autter_version": "2.2.0",
+  "base_commit_sha": "cdc988c0fb6d5edaffe6359e089193d079168c4a",
+  "branch": "main",
+  "prompts": {
+    "s_844951ddc8cef6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "252a332e-55a3-40c3-b7cf-f20c78213b7e",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "kodebyshubh <shubhbohra44@gmail.com>",
+      "messages_url": "cas:885b259ea1c6677496dbdd07c8beab095647fc5958468f291741f134f444347e",
+      "total_additions": 394,
+      "total_deletions": 6,
+      "accepted_lines": 517,
+      "overriden_lines": 7
+    }
+  },
+  "sessions": {
+    "s_844951ddc8cef6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "252a332e-55a3-40c3-b7cf-f20c78213b7e",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "kodebyshubh <shubhbohra44@gmail.com>",
+      "messages_url": "cas:885b259ea1c6677496dbdd07c8beab095647fc5958468f291741f134f444347e",
+      "stats": {
+        "total_additions": 394,
+        "total_deletions": 6,
+        "accepted_lines": 517,
+        "overriden_lines": 7,
+        "files": {
+          "README.md": {
+            "total_additions": 309,
+            "total_deletions": 3,
+            "accepted_lines": 306,
+            "overriden_lines": 0
+          },
+          "docs/demo_script.md": {
+            "total_additions": 15,
+            "total_deletions": 0,
+            "accepted_lines": 15,
+            "overriden_lines": 0
+          },
+          "scripts/capture_screenshots.py": {
+            "total_additions": 69,
+            "total_deletions": 2,
+            "accepted_lines": 50,
+            "overriden_lines": 7
+          },
+          "tests/e2e/conftest.py": {
+            "total_additions": 1,
+            "total_deletions": 1,
+            "accepted_lines": 1,
+            "overriden_lines": 0
+          },
+          "zdnd/implementation_plan.md": {
+            "total_additions": 0,
+            "total_deletions": 0,
+            "accepted_lines": 69,
+            "overriden_lines": 0
+          },
+          "zdnd/memory.md": {
+            "total_additions": 0,
+            "total_deletions": 0,
+            "accepted_lines": 35,
+            "overriden_lines": 0
+          },
+          "zdnd/prd.md": {
+            "total_additions": 0,
+            "total_deletions": 0,
+            "accepted_lines": 41,
+            "overriden_lines": 0
+          }
+        }
+      }
+    }
+  }
+}
