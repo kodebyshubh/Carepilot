@@ -1,0 +1,40 @@
+{"id": "a01", "question": "What are the common symptoms of diabetes?", "answerable": true, "relevant_docs": ["niddk_diabetes_symptoms", "who_diabetes"], "key_facts": [["thirst"], ["urinat"], ["blurred vision"], ["fatigue", "tired"]]}
+{"id": "a02", "question": "What are the warning signs of diabetic ketoacidosis in type 1 diabetes?", "answerable": true, "relevant_docs": ["niddk_diabetes_symptoms"], "key_facts": [["fruity"], ["breath"], ["nausea", "vomit"]]}
+{"id": "a03", "question": "Do people with type 2 diabetes always notice symptoms?", "answerable": true, "relevant_docs": ["niddk_diabetes_symptoms"], "key_facts": [["no symptoms", "not notice", "slowly", "years"]]}
+{"id": "a04", "question": "What are the risk factors for type 2 diabetes?", "answerable": true, "relevant_docs": ["niddk_t2d_risk_factors", "niddk_diabetes_symptoms"], "key_facts": [["overweight", "obesity"], ["35", "age"], ["family history"], ["physically active", "inactiv"]]}
+{"id": "a05", "question": "How much weight loss can help prevent type 2 diabetes?", "answerable": true, "relevant_docs": ["niddk_t2d_prevention"], "key_facts": [["5 to 7 percent", "5-7%"]]}
+{"id": "a06", "question": "I was told I have prediabetes. What should I do?", "answerable": true, "relevant_docs": ["niddk_t2d_prevention", "niddk_diabetes_symptoms"], "key_facts": [["weight"], ["active", "activity"]]}
+{"id": "a07", "question": "What does the A1C test measure?", "answerable": true, "relevant_docs": ["niddk_managing_diabetes"], "key_facts": [["average"], ["3 months", "three months"]]}
+{"id": "a08", "question": "What blood pressure goal do people with diabetes usually have?", "answerable": true, "relevant_docs": ["niddk_managing_diabetes", "who_hypertension"], "key_facts": [["130/80"]]}
+{"id": "a09", "question": "What are the diabetes ABCs?", "answerable": true, "relevant_docs": ["niddk_managing_diabetes"], "key_facts": [["a1c"], ["blood pressure"], ["cholesterol"]]}
+{"id": "a10", "question": "How much physical activity is recommended for people with diabetes?", "answerable": true, "relevant_docs": ["niddk_managing_diabetes", "who_diabetes"], "key_facts": [["150 minutes"]]}
+{"id": "a11", "question": "Why is waist circumference important for diabetes risk?", "answerable": true, "relevant_docs": ["niddk_t2d_risk_factors"], "key_facts": [["waist"], ["fat", "risk"]]}
+{"id": "a12", "question": "What causes type 1 diabetes?", "answerable": true, "relevant_docs": ["niddk_diabetes_symptoms"], "key_facts": [["immune"], ["beta cells", "pancreas"]]}
+{"id": "a13", "question": "What causes type 2 diabetes?", "answerable": true, "relevant_docs": ["niddk_diabetes_symptoms"], "key_facts": [["insulin resistance", "trouble using insulin"], ["pancreas", "insulin"]]}
+{"id": "a14", "question": "Can some medicines raise the risk of diabetes?", "answerable": true, "relevant_docs": ["niddk_diabetes_symptoms"], "key_facts": [["statin", "steroid", "glucocorticoid", "beta-blocker", "diuretic"]]}
+{"id": "a15", "question": "What are the risk factors for high blood pressure?", "answerable": true, "relevant_docs": ["nhlbi_hbp_causes", "who_hypertension"], "key_facts": [["age", "older"], ["salt", "sodium"], ["alcohol"], ["family history", "genetic"]]}
+{"id": "a16", "question": "Which lifestyle changes help lower high blood pressure?", "answerable": true, "relevant_docs": ["nhlbi_hbp_treatment", "nhlbi_hbp_causes", "who_hypertension"], "key_facts": [["salt", "sodium", "dash"], ["active", "activity"], ["smok", "tobacco"]]}
+{"id": "a17", "question": "At what reading is hypertension diagnosed?", "answerable": true, "relevant_docs": ["who_hypertension"], "key_facts": [["140/90"]]}
+{"id": "a18", "question": "Does high blood pressure always cause symptoms?", "answerable": true, "relevant_docs": ["who_hypertension"], "key_facts": [["may not feel", "no symptoms", "not feel symptoms", "silent"]]}
+{"id": "a19", "question": "What complications can uncontrolled hypertension cause?", "answerable": true, "relevant_docs": ["who_hypertension"], "key_facts": [["heart"], ["kidney", "stroke", "brain"]]}
+{"id": "a20", "question": "What is the DASH eating plan used for?", "answerable": true, "relevant_docs": ["nhlbi_hbp_treatment", "nhlbi_hbp_causes"], "key_facts": [["blood pressure"]]}
+{"id": "a21", "question": "What types of medicines are used to treat high blood pressure?", "answerable": true, "relevant_docs": ["nhlbi_hbp_treatment", "who_hypertension"], "key_facts": [["diuretic", "ace inhibitor", "calcium channel", "beta"]]}
+{"id": "a22", "question": "How much sleep do adults need for heart health?", "answerable": true, "relevant_docs": ["nhlbi_hbp_treatment"], "key_facts": [["7 to 9", "7-9"]]}
+{"id": "a23", "question": "What are the symptoms of a heart attack?", "answerable": true, "relevant_docs": ["nhlbi_heart_attack_symptoms"], "key_facts": [["chest"], ["shortness of breath", "breath"], ["sweat", "nausea", "light-headed", "dizz"]]}
+{"id": "a24", "question": "When should someone call 911 for chest pain?", "answerable": true, "relevant_docs": ["nhlbi_heart_attack_symptoms"], "key_facts": [["heart attack"], ["9-1-1", "911"]]}
+{"id": "a25", "question": "What is a silent heart attack?", "answerable": true, "relevant_docs": ["nhlbi_heart_attack_symptoms"], "key_facts": [["without any symptoms", "mild symptoms", "no symptoms"]]}
+{"id": "a26", "question": "Which lifestyle habits raise the risk of coronary heart disease?", "answerable": true, "relevant_docs": ["nhlbi_chd_risk_factors"], "key_facts": [["smok"], ["alcohol"], ["inactiv", "physically active"], ["sleep", "stress", "diet"]]}
+{"id": "a27", "question": "How does alcohol affect heart disease risk?", "answerable": true, "relevant_docs": ["nhlbi_chd_risk_factors", "nhlbi_hbp_causes", "who_hypertension"], "key_facts": [["blood pressure"], ["two drinks", "one drink", "2 for men", "1 drink"]]}
+{"id": "a28", "question": "Can air pollution affect heart disease risk?", "answerable": true, "relevant_docs": ["nhlbi_chd_risk_factors"], "key_facts": [["pollution"], ["risk"]]}
+{"id": "a29", "question": "How many people worldwide have hypertension?", "answerable": true, "relevant_docs": ["who_hypertension"], "key_facts": [["1.4 billion"]]}
+{"id": "a30", "question": "How can type 2 diabetes be prevented or delayed according to WHO?", "answerable": true, "relevant_docs": ["who_diabetes", "niddk_t2d_prevention"], "key_facts": [["healthy", "weight"], ["active", "150 minutes"], ["tobacco", "smok"]]}
+{"id": "u01", "question": "What is the recommended starting dose of metformin?", "answerable": false, "relevant_docs": [], "key_facts": [], "kind": "in-domain, dosing"}
+{"id": "u02", "question": "Does cinnamon cure type 2 diabetes?", "answerable": false, "relevant_docs": [], "key_facts": [], "kind": "in-domain, unsupported claim"}
+{"id": "u03", "question": "What is the survival rate of pancreatic cancer?", "answerable": false, "relevant_docs": [], "key_facts": [], "kind": "adjacent medical topic"}
+{"id": "u04", "question": "How is asthma treated in children?", "answerable": false, "relevant_docs": [], "key_facts": [], "kind": "adjacent medical topic"}
+{"id": "u05", "question": "Can I take ibuprofen together with lisinopril?", "answerable": false, "relevant_docs": [], "key_facts": [], "kind": "in-domain, drug interaction"}
+{"id": "u06", "question": "Which brand of insulin pump is the best?", "answerable": false, "relevant_docs": [], "key_facts": [], "kind": "in-domain, product advice"}
+{"id": "u07", "question": "What is the price of a continuous glucose monitor in India?", "answerable": false, "relevant_docs": [], "key_facts": [], "kind": "in-domain, price"}
+{"id": "u08", "question": "Who won the FIFA World Cup in 2018?", "answerable": false, "relevant_docs": [], "key_facts": [], "kind": "off-topic"}
+{"id": "u09", "question": "What is the capital of Australia?", "answerable": false, "relevant_docs": [], "key_facts": [], "kind": "off-topic"}
+{"id": "u10", "question": "Write a Python function that sorts a list.", "answerable": false, "relevant_docs": [], "key_facts": [], "kind": "off-topic, prompt misuse"}

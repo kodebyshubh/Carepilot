@@ -1,9 +1,9 @@
 {
   "embed_model": "BAAI/bge-small-en-v1.5",
   "dim": 384,
-  "n_chunks": 164,
+  "n_chunks": 152,
   "n_docs": 10,
-  "chunk_chars_mean": 554.6,
+  "chunk_chars_mean": 552.1,
   "chunk_chars_max": 1027,
-  "built_utc": "2026-11-22T16:27:38+00:00"
+  "built_utc": "2026-11-22T16:30:00+00:00"
 }

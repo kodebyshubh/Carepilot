@@ -22,16 +22,11 @@ MORE INFORMATION
 
 # High Blood Pressure Causes and Risk Factors
 
-## Language switcher
-
-- English
-- Español
-
 ## What are the risk factors?
 
 Many factors raise your risk of high blood pressure. You can change some risk factors, such as unhealthy lifestyle habits. A healthy lifestyle can lower your risk for developing high blood pressure.
 
-Other risk factors, such as age, family history and genetics genetic (jeh-NEH-tik): Having to do with genes. Most genes are sequences of DNA that contain information for making specific proteins or molecules of RNA that perform important functions in a cell. The information in genes is passed from parents to children., race and ethnicity, and sex, cannot be changed. But, you can still take steps to reduce your risk of high blood pressure and its complications.
+Other risk factors, such as age, family history and genetics, race and ethnicity, and sex, cannot be changed. But, you can still take steps to reduce your risk of high blood pressure and its complications.
 
 ### Age
 
@@ -41,7 +36,7 @@ However, the risk of high blood pressure is rising for children and teens, possi
 
 ### Family history and genetics
 
-High blood pressure often runs in families. Much of what we know about high blood pressure has come from genetic studies. Many genes gene (jeen): The unit that passes heredity from parents to children. Genes are pieces of DNA and contain information for making a specific protein. are linked to small increases in high blood pressure risk. Research Research (REE-serch): The scientific study of nature that sometimes includes processes of health and disease in people. Biomedical research can be defined as basic and pre-clinical, clinical and population science, implementation, and translational. Basic research seeks to understand the mechanisms of biology, disease, or behavior. Pre-clinical research connects basic science with clinical research. Clinical and population science research includes clinical trials that find safe and effective ways to prevent, detect, or treat diseases. Implementation research involves the adoption of interventions into routine clinical care for the general population. Translational research moves scientific discovery from basic and pre-clinical research to clinical studies and finally to clinical practice. suggests that as an unborn baby grows in the womb, some DNA DNA (NULL)::The molecules inside cells that carry information and pass it from one generation to the next. changes may also raise the risk for high blood pressure later in life.
+High blood pressure often runs in families. Much of what we know about high blood pressure has come from genetic studies. Many genes are linked to small increases in high blood pressure risk. Research suggests that as an unborn baby grows in the womb, some DNA changes may also raise the risk for high blood pressure later in life.
 
 Some people have a high sensitivity to salt in their diet, which can play a role in high blood pressure. This can also run in families.
 
@@ -49,7 +44,7 @@ Some people have a high sensitivity to salt in their diet, which can play a role
 
 Lifestyle habits can increase the risk of high blood pressure, including if you:
 
-- Eat unhealthy foods often, especially foods that are high in salt and low in potassium. Some people, including Black people, older adults, and people who have chronic kidney disease chronic kidney disease (KRAH-nik KID-nee di-SEEZ): When kidneys are damaged over a period of time and slowly lose the ability to filter blood properly., diabetes, or metabolic syndrome syndrome (SIN-drome): Signs, symptoms, or conditions that suggest a specific disease when they occur together., are more sensitive to salt in their diet.
+- Eat unhealthy foods often, especially foods that are high in salt and low in potassium. Some people, including Black people, older adults, and people who have chronic kidney disease, diabetes, or metabolic syndrome, are more sensitive to salt in their diet.
 - Drink too much alcohol or caffeine
 - Don’t get enough physical activity
 - Don’t get enough good-quality sleep
@@ -62,7 +57,7 @@ Some medicines can make it harder for your body to control your blood pressure. 
 
 ### Other medical conditions
 
-Other medical conditions change the way your body controls fluids, sodium sodium (SOH-dee-um): A chemical element, represented by the symbol Na. Salt is commonly found in nature and the body. Sodium can combine with other chemical elements or molecules. It is often found with another chemical element, chlorine (Cl), to form sodium chloride (NaCl), or table salt that is used to cook or is added to processed or prepackaged foods. The body needs certain amounts of sodium to keep fluids in balance. Too much sodium can cause the body to retain water. It can also lead to high blood pressure., and hormones hormone (HOR-moan): Substance made in glands throughout the body. Hormones are released into the blood to travel throughout the body to control other body functions. in your blood. Other conditions that can cause high blood pressure include:
+Other medical conditions change the way your body controls fluids, sodium, and hormones in your blood. Other conditions that can cause high blood pressure include:
 
 - Some tumors
 - Chronic kidney disease

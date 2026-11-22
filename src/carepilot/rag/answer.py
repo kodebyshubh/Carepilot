@@ -145,9 +145,16 @@ def answer_question(
     k: int = TOP_K,
     threshold: float | None = None,
 ) -> Answer:
+    hits = retriever.search(question, k=k, mode="hybrid_rerank")
+    return answer_from_hits(question, hits, llm, threshold)
+
+
+def answer_from_hits(
+    question: str, hits: list[Hit], llm: LLM, threshold: float | None = None
+) -> Answer:
+    """Gate, generate, validate. `hits` must be sorted by reranker score, best first."""
     threshold = load_abstain_threshold() if threshold is None else threshold
     label = getattr(llm, "label", llm.name)
-    hits = retriever.search(question, k=k, mode="hybrid_rerank")
     top = hits[0].score if hits else None
 
     def abstain(reason: str) -> Answer:

@@ -22,16 +22,11 @@ MORE INFORMATION
 
 # High Blood Pressure Treatment
 
-## Language switcher
-
-- English
-- Español
-
 For most people with high blood pressure, a healthcare provider will work with you to develop a treatment plan that may include heart-healthy lifestyle changes alone or with medicines. Your provider can help you manage your blood pressure and prevent complications. They may use a risk calculator to estimate your risk of complications and guide a discussion with you about choosing the best treatments.
 
 Your provider may also involve other experts in your treatment, including a nutritionist or dietician, a pharmacist, and specialists for other conditions you have, including heart conditions. If your high blood pressure is caused by another health condition or medicine, it may get better once the cause is treated or removed.
 
-Research Research (REE-serch): The scientific study of nature that sometimes includes processes of health and disease in people. Biomedical research can be defined as basic and pre-clinical, clinical and population science, implementation, and translational. Basic research seeks to understand the mechanisms of biology, disease, or behavior. Pre-clinical research connects basic science with clinical research. Clinical and population science research includes clinical trials that find safe and effective ways to prevent, detect, or treat diseases. Implementation research involves the adoption of interventions into routine clinical care for the general population. Translational research moves scientific discovery from basic and pre-clinical research to clinical studies and finally to clinical practice. suggests that getting your systolic blood pressure below 120 mm Hg can reduce your risk of serious complications.
+Research suggests that getting your systolic blood pressure below 120 mm Hg can reduce your risk of serious complications.
 
 ## Risk calculators
 
@@ -65,8 +60,8 @@ Talk to your provider if you have any concerns about side effects from the medic
 
 There are several common high blood pressure medicines your provider can prescribe:
 
-- Angiotensin-converting enzyme enzyme (EN-zime): A protein that speeds up chemical reactions in the body. inhibitors keep your blood vessels from narrowing as much.
-- Angiotensin II receptor receptor (reh-SEP-ter): A protein inside a cell or on the surface of a cell that recognizes or binds to specific molecules or proteins and causes a specific effect in the cell. blockers also keep blood vessels from narrowing.
+- Angiotensin-converting enzyme inhibitors keep your blood vessels from narrowing as much.
+- Angiotensin II receptor blockers also keep blood vessels from narrowing.
 - Calcium channel blockers prevent calcium from entering the muscle cells of your heart and blood vessels. This allows blood vessels to relax.
 - Diuretics remove extra water and sodium (salt) from your body, lowering the amount of fluid in your blood. The main diuretic for high blood pressure treatment is thiazide. Diuretics are often used with other high blood pressure medicines, sometimes in one combined pill.
 

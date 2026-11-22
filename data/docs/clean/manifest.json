@@ -10,7 +10,7 @@
       "symptoms"
     ],
     "chars": 14163,
-    "retrieved_utc": "2026-11-22T16:04:25+00:00"
+    "retrieved_utc": "2026-11-22T16:29:32+00:00"
   },
   {
     "doc_id": "niddk_t2d_risk_factors",
@@ -23,7 +23,7 @@
       "risk factors"
     ],
     "chars": 3315,
-    "retrieved_utc": "2026-11-22T16:04:25+00:00"
+    "retrieved_utc": "2026-11-22T16:29:32+00:00"
   },
   {
     "doc_id": "niddk_t2d_prevention",
@@ -37,7 +37,7 @@
       "lifestyle"
     ],
     "chars": 4609,
-    "retrieved_utc": "2026-11-22T16:04:26+00:00"
+    "retrieved_utc": "2026-11-22T16:29:32+00:00"
   },
   {
     "doc_id": "niddk_managing_diabetes",
@@ -51,7 +51,7 @@
       "lifestyle"
     ],
     "chars": 17998,
-    "retrieved_utc": "2026-11-22T16:04:26+00:00"
+    "retrieved_utc": "2026-11-22T16:29:33+00:00"
   },
   {
     "doc_id": "nhlbi_hbp_causes",
@@ -63,8 +63,8 @@
       "hypertension",
       "risk factors"
     ],
-    "chars": 7570,
-    "retrieved_utc": "2026-11-22T16:04:26+00:00"
+    "chars": 5264,
+    "retrieved_utc": "2026-11-22T16:29:33+00:00"
   },
   {
     "doc_id": "nhlbi_hbp_treatment",
@@ -77,8 +77,8 @@
       "treatment",
       "lifestyle"
     ],
-    "chars": 7729,
-    "retrieved_utc": "2026-11-22T16:04:26+00:00"
+    "chars": 6633,
+    "retrieved_utc": "2026-11-22T16:29:33+00:00"
   },
   {
     "doc_id": "nhlbi_chd_risk_factors",
@@ -90,8 +90,8 @@
       "heart disease",
       "risk factors"
     ],
-    "chars": 12147,
-    "retrieved_utc": "2026-11-22T16:04:26+00:00"
+    "chars": 8481,
+    "retrieved_utc": "2026-11-22T16:29:33+00:00"
   },
   {
     "doc_id": "nhlbi_heart_attack_symptoms",
@@ -104,8 +104,8 @@
       "symptoms",
       "emergency"
     ],
-    "chars": 3282,
-    "retrieved_utc": "2026-11-22T16:04:26+00:00"
+    "chars": 3239,
+    "retrieved_utc": "2026-11-22T16:29:33+00:00"
   },
   {
     "doc_id": "who_hypertension",
@@ -117,7 +117,7 @@
       "hypertension"
     ],
     "chars": 7357,
-    "retrieved_utc": "2026-11-22T16:04:26+00:00"
+    "retrieved_utc": "2026-11-22T16:29:33+00:00"
   },
   {
     "doc_id": "who_diabetes",
@@ -129,6 +129,6 @@
       "diabetes"
     ],
     "chars": 14835,
-    "retrieved_utc": "2026-11-22T16:04:26+00:00"
+    "retrieved_utc": "2026-11-22T16:29:33+00:00"
   }
 ]

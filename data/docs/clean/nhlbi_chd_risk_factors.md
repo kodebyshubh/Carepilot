@@ -19,16 +19,11 @@ MORE INFORMATION
 
 # Coronary Heart Disease Risk Factors
 
-## Language switcher
-
-- English
-- Español
-
 Your risk of coronary heart disease increases based on the number of risk factors you have and how serious they are. Some risk factors — such as high blood pressure and unhealthy cholesterol levels can be adjusted through heart-healthy lifestyle changes. Other risk factors, such as your age, family history, and race and ethnicity, cannot be changed.
 
 Almost half of adults in the United States have at least one of three key risk factors for coronary heart disease:
 
-- High blood pressure blood pressure (blud PREH-sher): The force of blood pushing against the walls of your arteries as the heart pumps blood. Blood pressure has two measurements: systolic, which is measured when the heart beats and blood pressure is at its highest, and diastolic, which is measured between heart beats when blood pressure is at its lowest.
+- High blood pressure
 - High cholesterol
 - Smoking
 
@@ -42,7 +37,7 @@ Learn some common heart-related terms and questions to ask your healthcare provi
 
 ## Age
 
-Heart disease can happen at any age, but the risk increases as you age. Genetic Genetic (jeh-NEH-tik): Having to do with genes. Most genes are sequences of DNA that contain information for making specific proteins or molecules of RNA that perform important functions in a cell. The information in genes is passed from parents to children. and lifestyle factors can cause plaque plaque (Plak): A substance made up of fat, cholesterol, calcium, and other substances found in the blood. In some cardiovascular diseases, plaque builds up and hardens in arteries. Plaque buildup reduces blood flow and makes it more likely that blood clots will form in the arteries. These blood clots can partially or completely block blood flow and oxygen delivery to the heart, brain, kidneys, or legs, arms, or pelvis. to build up in your arteries artery (ARR-tuh-ree): A blood vessel that carries blood from the heart to the organs. Most arteries carry oxygenated blood. The pulmonary arteries carry deoxygenated blood away from the heart to the lungs. over time.
+Heart disease can happen at any age, but the risk increases as you age. Genetic and lifestyle factors can cause plaque to build up in your arteries over time.
 
 Coronary heart disease is the leading cause of death for both men and women in the United States. Men’s risk for coronary heart disease starts to increase significantly around age 45. Before menopause, women have a lower risk of coronary heart disease than men. Around age 55, the risk for women increases more rapidly.
 
@@ -52,7 +47,7 @@ Coronary heart disease is the leading cause of death for both men and women in t
 
 Outdoor or indoor air pollution can increase your risk of coronary heart disease. The increase in risk may be higher in older adults, women, and people with diabetes or obesity. Air pollution may cause or worsen other conditions known to increase your risk of coronary heart disease, such as high blood pressure and inflammation.
 
-Being outside can be good for your health. But both hot and cold weather can stress your body. This stress may worsen some coronary heart disease symptoms symptom (SIMP-tum): A problem that a patient experiences that may indicate disease but cannot be seen and does not show up on medical tests or procedures; some examples include headache, fatigue, nausea, or pain. and lead to serious heart problems. High outdoor temperatures can also worsen air pollution, further increasing the risk of heart problems.
+Being outside can be good for your health. But both hot and cold weather can stress your body. This stress may worsen some coronary heart disease symptoms and lead to serious heart problems. High outdoor temperatures can also worsen air pollution, further increasing the risk of heart problems.
 
 Smoke from wildfires can lead to inflammation that raises your risk for coronary heart disease and its complications, including death.
 
@@ -68,7 +63,7 @@ Your job may increase your risk if you:
 
 ## Family history and genetics
 
-A family history of early heart disease is a risk factor for coronary heart disease. This is especially true if your father or brother was diagnosed before age 55, or if your mother or sister was diagnosed before age 65. Research Research (REE-serch): The scientific study of nature that sometimes includes processes of health and disease in people. Biomedical research can be defined as basic and pre-clinical, clinical and population science, implementation, and translational. Basic research seeks to understand the mechanisms of biology, disease, or behavior. Pre-clinical research connects basic science with clinical research. Clinical and population science research includes clinical trials that find safe and effective ways to prevent, detect, or treat diseases. Implementation research involves the adoption of interventions into routine clinical care for the general population. Translational research moves scientific discovery from basic and pre-clinical research to clinical studies and finally to clinical practice. shows that some genes are linked to a higher risk for coronary heart disease.
+A family history of early heart disease is a risk factor for coronary heart disease. This is especially true if your father or brother was diagnosed before age 55, or if your mother or sister was diagnosed before age 65. Research shows that some genes are linked to a higher risk for coronary heart disease.
 
 ## Lifestyle habits
 
@@ -79,7 +74,7 @@ Over time, unhealthy lifestyle habits can lead to plaque buildup in the heart's 
 - Not getting enough quality sleep, including waking up often throughout the night, may raise your risk of coronary heart disease. While you sleep, your heart does not work as hard as it does when you are awake. Waking up suddenly can cause a sharp increase in blood pressure and heart rate, which has been linked to angina and heart attacks.
 - Smoking or long-term exposure to secondhand smoke can damage your blood vessels.
 - Stress can cause your arteries to tighten. Stress may also indirectly raise your risk of coronary heart disease if it makes you more likely to smoke or overeat foods that are high in fat and added sugars.
-- Unhealthy eating patterns, including consuming a lot of saturated fats and refined carbohydrates carbohydrate (KAR-boh-HY-drayt): Group of compounds occurring in foods and including sugars, starch, and cellulose. They can be broken down in the body for energy. (such as white bread, pasta, and white rice), can lead to overweight and obesity, high blood cholesterol, atherosclerosis atherosclerosis (ATH-er-oh-skler-OH-sis): A disease marked by plaque build-up inside the arteries, which limits the flow of oxygen-rich blood through the body., and plaque buildup in the heart's arteries.
+- Unhealthy eating patterns, including consuming a lot of saturated fats and refined carbohydrates (such as white bread, pasta, and white rice), can lead to overweight and obesity, high blood cholesterol, atherosclerosis, and plaque buildup in the heart's arteries.
 
 Learn about steps you can take to lead a more heart-healthy lifestyle.
 
@@ -97,8 +92,8 @@ Other medical conditions that affect your heart and blood vessels can raise your
 
 Some medical conditions not directly related to your heart and blood vessels may increase your risk for coronary heart disease. These include:
 
-- Autoimmune Autoimmune (AW-toh-ih-MYOON): A term describing cells and antibodies that a person’s body makes to attack its own tissues, as happens in autoimmune diseases. and inflammatory inflammatory (in-FLA-muh-TOR-ee): Having to do with inflammation (redness, swelling, pain, and a feeling of heat that helps protect tissues affected by injury or disease). diseases, such as psoriasis, lichen planus, pemphigus, lupus erythematosus, and rheumatoid arthritis
-- Chronic Chronic (KRAH-nik): Describes a condition, disease, sign, or symptom that lasts persistently, recurs frequently, or worsens progressively over a long time. *!*! kidney disease kidney disease (KID-nee di-SEEZ): Loss of kidney function that can be acute, which means it lasts for a short time, or chronic, which means it worsens progressively over a long period of time. Kidney disease may be diagnosed when a person has a glomerular filtration rate (GFR) of less than 60 milliliters per minute per 1.73 meters squared (mL/min/1.73 m2).
+- Autoimmune and inflammatory diseases, such as psoriasis, lichen planus, pemphigus, lupus erythematosus, and rheumatoid arthritis
+- Chronic kidney disease
 - COVID-19
 - Diabetes
 - HIV/AIDS, especially among older adults, in part because of side effects of HIV treatments
@@ -112,7 +107,7 @@ Heart disease is the leading cause of death for people of most racial and ethnic
 
 In the United States, Black adults are more likely to have socio-economic disadvantages, such as high blood pressure, obesity, diabetes, a family history of heart problems, exposure to environmental hazards such as air pollution, and other socio-economic issues. These result in Black adults having a death rate due to heart and blood vessel disease that is twice that of White adults. Similarly, American Indian/Alaska Native people have a death rate that is 1.5 times higher than the rate for White people.
 
-For Asian American, Pacific Islander, or Hispanic people, heart disease is second only to cancer cancer (KAN-ser): Diseases in which cells divide more than they should. Cancer cells can spread to nearby tissues or to other parts of the body through the blood or other systems. Also known as malignancy. *!*! in causes of death.
+For Asian American, Pacific Islander, or Hispanic people, heart disease is second only to cancer in causes of death.
 
 People of South Asian ancestry have a higher risk of developing coronary heart disease and its serious complications. They also tend to develop coronary heart disease at a younger age. South Asia includes Afghanistan, Bangladesh, Bhutan, India, Maldives, Nepal, Pakistan, and Sri Lanka.
 

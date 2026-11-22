@@ -140,7 +140,7 @@ BOILERPLATE = re.compile(
     r"this content is provided as a service|clinical trials|was this page helpful)",
     re.IGNORECASE,
 )
-LANGUAGE_SWITCHER = frozenset({"Language switcher", "English", "Español"})
+DROP_SELECTORS = "[role=navigation], .visually-hidden, .usa-modal"
 TRAILER = re.compile(
     r"\n#{1,4} (References|Clinical Trials|Related Topics|WHO response)\b.*", re.DOTALL
 )
@@ -167,6 +167,9 @@ def html_to_markdown(html: str) -> str:
     root = _main_container(soup)
     for tag in root.find_all(DROP_TAGS):
         tag.decompose()
+    # Language switcher nav, screen-reader-only labels, NIH glossary pop-up definitions.
+    for tag in root.select(DROP_SELECTORS):
+        tag.decompose()
 
     lines: list[str] = []
     for el in root.find_all(["h1", "h2", "h3", "h4", "p", "li"]):
@@ -174,7 +177,7 @@ def html_to_markdown(html: str) -> str:
         if el.name in ("p", "li") and el.find_parent("li") is not None:
             continue
         text = re.sub(r"\s+", " ", el.get_text(" ", strip=True)).strip()
-        if not text or BOILERPLATE.match(text) or text in LANGUAGE_SWITCHER:
+        if not text or BOILERPLATE.match(text):
             continue
         if el.name in ("h1", "h2", "h3", "h4"):
             level = {"h1": "#", "h2": "##", "h3": "###", "h4": "####"}[el.name]
