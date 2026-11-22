@@ -1,0 +1,13 @@
+zdnd/
+CLAUDE.md
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+test-results/
+playwright-report/
+.hf_cache/

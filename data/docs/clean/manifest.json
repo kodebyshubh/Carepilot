@@ -1,0 +1,134 @@
+[
+  {
+    "doc_id": "niddk_diabetes_symptoms",
+    "title": "Symptoms & Causes of Diabetes",
+    "publisher": "NIDDK (NIH)",
+    "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/symptoms-causes",
+    "license": "US Government work, public domain (NIH)",
+    "topics": [
+      "diabetes",
+      "symptoms"
+    ],
+    "chars": 14163,
+    "retrieved_utc": "2026-11-22T16:04:25+00:00"
+  },
+  {
+    "doc_id": "niddk_t2d_risk_factors",
+    "title": "Risk Factors for Type 2 Diabetes",
+    "publisher": "NIDDK (NIH)",
+    "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/risk-factors-type-2-diabetes",
+    "license": "US Government work, public domain (NIH)",
+    "topics": [
+      "diabetes",
+      "risk factors"
+    ],
+    "chars": 3315,
+    "retrieved_utc": "2026-11-22T16:04:25+00:00"
+  },
+  {
+    "doc_id": "niddk_t2d_prevention",
+    "title": "Preventing Type 2 Diabetes",
+    "publisher": "NIDDK (NIH)",
+    "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-type-2-diabetes",
+    "license": "US Government work, public domain (NIH)",
+    "topics": [
+      "diabetes",
+      "prevention",
+      "lifestyle"
+    ],
+    "chars": 4609,
+    "retrieved_utc": "2026-11-22T16:04:26+00:00"
+  },
+  {
+    "doc_id": "niddk_managing_diabetes",
+    "title": "Managing Diabetes",
+    "publisher": "NIDDK (NIH)",
+    "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes",
+    "license": "US Government work, public domain (NIH)",
+    "topics": [
+      "diabetes",
+      "management",
+      "lifestyle"
+    ],
+    "chars": 17998,
+    "retrieved_utc": "2026-11-22T16:04:26+00:00"
+  },
+  {
+    "doc_id": "nhlbi_hbp_causes",
+    "title": "High Blood Pressure: Causes and Risk Factors",
+    "publisher": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/high-blood-pressure/causes",
+    "license": "US Government work, public domain (NIH)",
+    "topics": [
+      "hypertension",
+      "risk factors"
+    ],
+    "chars": 7570,
+    "retrieved_utc": "2026-11-22T16:04:26+00:00"
+  },
+  {
+    "doc_id": "nhlbi_hbp_treatment",
+    "title": "High Blood Pressure: Treatment",
+    "publisher": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/high-blood-pressure/treatment",
+    "license": "US Government work, public domain (NIH)",
+    "topics": [
+      "hypertension",
+      "treatment",
+      "lifestyle"
+    ],
+    "chars": 7729,
+    "retrieved_utc": "2026-11-22T16:04:26+00:00"
+  },
+  {
+    "doc_id": "nhlbi_chd_risk_factors",
+    "title": "Coronary Heart Disease: Risk Factors",
+    "publisher": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/coronary-heart-disease/risk-factors",
+    "license": "US Government work, public domain (NIH)",
+    "topics": [
+      "heart disease",
+      "risk factors"
+    ],
+    "chars": 12147,
+    "retrieved_utc": "2026-11-22T16:04:26+00:00"
+  },
+  {
+    "doc_id": "nhlbi_heart_attack_symptoms",
+    "title": "Heart Attack: Symptoms",
+    "publisher": "NHLBI (NIH)",
+    "url": "https://www.nhlbi.nih.gov/health/heart-attack/symptoms",
+    "license": "US Government work, public domain (NIH)",
+    "topics": [
+      "heart disease",
+      "symptoms",
+      "emergency"
+    ],
+    "chars": 3282,
+    "retrieved_utc": "2026-11-22T16:04:26+00:00"
+  },
+  {
+    "doc_id": "who_hypertension",
+    "title": "Hypertension (fact sheet)",
+    "publisher": "World Health Organization",
+    "url": "https://www.who.int/news-room/fact-sheets/detail/hypertension",
+    "license": "WHO fact sheet, CC BY-NC-SA 3.0 IGO (non-commercial use with attribution)",
+    "topics": [
+      "hypertension"
+    ],
+    "chars": 7357,
+    "retrieved_utc": "2026-11-22T16:04:26+00:00"
+  },
+  {
+    "doc_id": "who_diabetes",
+    "title": "Diabetes (fact sheet)",
+    "publisher": "World Health Organization",
+    "url": "https://www.who.int/news-room/fact-sheets/detail/diabetes",
+    "license": "WHO fact sheet, CC BY-NC-SA 3.0 IGO (non-commercial use with attribution)",
+    "topics": [
+      "diabetes"
+    ],
+    "chars": 14835,
+    "retrieved_utc": "2026-11-22T16:04:26+00:00"
+  }
+]
