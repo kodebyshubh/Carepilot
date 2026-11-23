@@ -17,10 +17,11 @@ import streamlit as st
 from carepilot.config import MODELS_DIR, REPORTS_DIR, get_settings
 from carepilot.core.explain import explain_risk
 from carepilot.core.safety import DISCLAIMER, EMERGENCY_NUMBERS, check_red_flags, check_vitals
+from carepilot.core.whatif import MODIFIABLE, what_if
 from carepilot.llm.providers import LLMError, get_llm
 from carepilot.ml.datasets import SPECS, DiseaseSpec
 from carepilot.ml.predict import PatientValidationError, RiskResult, predict_risk
-from carepilot.rag.answer import Answer, answer_question
+from carepilot.rag.answer import Answer, answer_question, load_abstain_threshold
 from carepilot.rag.retrieve import Retriever
 
 st.set_page_config(page_title="CarePilot", page_icon="🩺", layout="wide")
@@ -211,6 +212,7 @@ def risk_tab(provider: str) -> None:
     result, entered = stored
     show_red_flags(check_vitals(disease, entered))
     show_risk(result)
+    show_what_if(spec, result, entered)
     st.subheader("Why, and what to do: explanation from the documents")
     if "explanation" not in st.session_state:  # Streamlit reruns on every click; compute once
         with st.spinner("Retrieving evidence and writing the explanation..."):
@@ -218,6 +220,37 @@ def risk_tab(provider: str) -> None:
                 result, load_retriever(), load_llm(provider)
             )
     show_answer(st.session_state["explanation"])
+
+
+def show_what_if(spec: DiseaseSpec, result: RiskResult, entered: dict) -> None:
+    """Sliders for factors a person can change; the estimate updates live."""
+    st.subheader("What if?")
+    st.caption(
+        "Move a factor a person can influence and see how the model's estimate responds. "
+        "This reflects patterns in the training data, not a guaranteed effect of treatment."
+    )
+    factors = [f for f in MODIFIABLE[spec.name] if entered.get(f) is not None]
+    cols = st.columns(len(factors) + 1)
+    changes = {}
+    for col, name in zip(cols, factors, strict=False):
+        info = spec.features[name]
+        value = float(entered[name])
+        changes[name] = col.slider(
+            f"{info.label} ({info.unit})",
+            min_value=float(info.min_value),
+            max_value=float(info.max_value),
+            value=value,
+            step=1.0 if info.max_value > 50 else 0.1,
+            key=f"whatif_{spec.name}_{name}_{value}",  # new patient value resets the slider
+        )
+    simulated = what_if(spec.name, entered, changes)
+    delta = simulated.probability - result.probability
+    cols[-1].metric(
+        "Simulated risk",
+        f"{simulated.probability:.0%}",
+        delta=f"{delta:+.0%}" if abs(delta) >= 0.005 else None,
+        delta_color="inverse",  # lower risk shown in green
+    )
 
 
 # ---------- Ask tab ----------
@@ -243,6 +276,48 @@ def ask_tab(provider: str) -> None:
         return
     show_red_flags(check_red_flags(ans.question))
     show_answer(ans)
+    show_xray(ans)
+
+
+@st.cache_data(show_spinner=False, max_entries=64)
+def pipeline_trace(question: str) -> pd.DataFrame:
+    rows = load_retriever().trace(question)
+    return pd.DataFrame(
+        {
+            "Passage": [r.passage for r in rows],
+            "Dense rank": [r.dense_rank for r in rows],
+            "BM25 rank": [r.bm25_rank for r in rows],
+            "After fusion (RRF)": [r.rrf_rank for r in rows],
+            "Final (reranked)": [r.rerank_rank for r in rows],
+            "Reranker score": [round(r.rerank_score, 2) for r in rows],
+        }
+    )
+
+
+def show_xray(ans: Answer) -> None:
+    """Make the retrieval pipeline visible: how each stage ranked the passages."""
+    with st.expander("Pipeline X-ray: how this answer was found"):
+        threshold = load_abstain_threshold()
+        top = ans.top_score
+        if top is None:
+            st.markdown("No passages retrieved.")
+            return
+        verdict = (
+            "passed, so the LLM was asked"
+            if top >= threshold
+            else "failed, so the app abstained without calling the LLM"
+        )
+        st.markdown(
+            "1. **BM25** (keywords) and **dense search** (bge-small embeddings in FAISS) each "
+            "return their top 20 passages.\n"
+            "2. **Reciprocal Rank Fusion** merges the two rankings.\n"
+            "3. A **cross-encoder reranker** reads question and passage together and re-scores "
+            "the top 20.\n"
+            f"4. **Relevance gate:** best reranker score {top:.2f} vs threshold "
+            f"{threshold:.2f}: {verdict}."
+        )
+        st.dataframe(pipeline_trace(ans.question), hide_index=True, width="stretch")
+        st.caption("Empty rank = that stage did not place the passage in its top 20.")
 
 
 # ---------- Report tab ----------

@@ -155,3 +155,47 @@ class Retriever:
             if mode == "hybrid_rerank":
                 ranked = self.rerank(query, [i for i, _ in ranked[:CANDIDATES]])
         return [Hit(self.chunks[i], s) for i, s in ranked[:k]]
+
+    def trace(self, query: str, show: int = 8) -> list[TraceRow]:
+        """Every stage's rank and score for the final top candidates ("pipeline X-ray").
+
+        Same computation as search(mode="hybrid_rerank"), but keeps the intermediate
+        rankings so the UI can show how BM25, dense retrieval, fusion and the reranker
+        each placed a passage. None means the stage did not return that passage.
+        """
+        dense, sparse = self.dense(query), self.sparse(query)
+        fused = rrf([[i for i, _ in dense], [i for i, _ in sparse]])
+        reranked = self.rerank(query, [i for i, _ in fused[:CANDIDATES]])
+
+        def positions(ranking: list[tuple[int, float]]) -> dict[int, tuple[int, float]]:
+            return {i: (r, s) for r, (i, s) in enumerate(ranking, start=1)}
+
+        d, b, f = positions(dense), positions(sparse), positions(fused)
+        rows = []
+        for final_rank, (i, score) in enumerate(reranked[:show], start=1):
+            c = self.chunks[i]
+            rows.append(
+                TraceRow(
+                    passage=f"{c.title} > {c.section}" if c.section else c.title,
+                    dense_rank=d.get(i, (None, None))[0],
+                    dense_score=d.get(i, (None, None))[1],
+                    bm25_rank=b.get(i, (None, None))[0],
+                    bm25_score=b.get(i, (None, None))[1],
+                    rrf_rank=f[i][0],
+                    rerank_rank=final_rank,
+                    rerank_score=score,
+                )
+            )
+        return rows
+
+
+@dataclass(frozen=True)
+class TraceRow:
+    passage: str
+    dense_rank: int | None
+    dense_score: float | None
+    bm25_rank: int | None
+    bm25_score: float | None
+    rrf_rank: int
+    rerank_rank: int
+    rerank_score: float

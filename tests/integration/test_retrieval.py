@@ -36,3 +36,11 @@ def test_answer_with_sources_end_to_end(retriever):
 def test_off_topic_question_abstains(retriever):
     ans = answer_question("Who won the football world cup in 2018?", retriever, ExtractiveLLM())
     assert ans.abstained
+
+
+def test_trace_reports_every_stage_for_top_passages(retriever):
+    rows = retriever.trace("What A1C goal is recommended?", show=5)
+    assert [r.rerank_rank for r in rows] == [1, 2, 3, 4, 5]
+    assert "A1C" in rows[0].passage
+    assert rows[0].dense_rank is not None and rows[0].bm25_rank is not None
+    assert rows[0].rerank_score >= rows[-1].rerank_score
