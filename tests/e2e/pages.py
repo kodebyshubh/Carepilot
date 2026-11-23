@@ -46,29 +46,42 @@ class CarePilotPage:
     def _pick(self, select: Locator, option: str, attempts: int = 3) -> None:
         """Open the dropdown and choose an option.
 
-        A click that lands while Streamlit re-renders can leave the list closed, so the open
-        is retried, each time waiting for the option itself rather than sleeping.
+        A click that lands while Streamlit re-renders can leave the list closed, or pick in a
+        widget that the pending rerun then replaces (seen on the slower deployed app), so each
+        attempt is confirmed by the select showing the option before moving on.
         """
         item = self.page.get_by_role("option", name=option, exact=True)
         for attempt in range(attempts):
             self.wait_idle()
-            select.click()
             try:
+                select.click()
                 item.click(timeout=5_000)  # waits for visible + stable
-                break
-            except PlaywrightTimeoutError:
+                self.wait_idle()
+                expect(select.get_by_role("combobox")).to_have_value(option, timeout=5_000)
+                return
+            except (PlaywrightTimeoutError, AssertionError):
                 if attempt == attempts - 1:
                     raise
                 self.page.keyboard.press("Escape")  # close a half-open list before retrying
-        self.wait_idle()
 
     # ----- risk tab -----
     def choose_condition(self, label: str) -> None:
         self.main.get_by_text(label, exact=True).click()
+        # The rerun may not have started yet over a slow network: wait for the new form.
+        expect(self.main.get_by_role("radio", name=label, exact=True)).to_be_checked()
         self.wait_idle()
 
-    def choose_preset(self, name: str) -> None:
+    def choose_preset(self, name: str, age: int) -> None:
+        """Pick a preset and wait until its values are on screen.
+
+        On the deployed app the preset's rerun can start after the idle check returns; typing
+        before it lands gets overwritten. The preset's age showing up proves the form is new.
+        """
         self._pick(self.main.get_by_test_id("stSelectbox").first, name)
+        # The old form can linger (stale) next to the new one, so match the new field itself.
+        new_age = self.main.locator(f"input[aria-label='Age (years)'][value='{age}']")
+        expect(new_age).to_have_count(1, timeout=60_000)
+        self.wait_idle()
 
     def set_number(self, label: str, value: float) -> None:
         self.wait_idle()

@@ -16,7 +16,7 @@ def test_app_loads_with_disclaimer_and_provider(app):
 
 
 def test_high_risk_diabetes_patient_gets_risk_and_cited_explanation(app):
-    app.choose_preset("High-risk example")
+    app.choose_preset("High-risk example", age=52)
     app.estimate()
     expect(app.risk_metric).to_contain_text(re.compile(r"\d+%"), timeout=MODEL_TIMEOUT_MS)
     expect(app.band("High")).to_be_visible()
@@ -26,7 +26,7 @@ def test_high_risk_diabetes_patient_gets_risk_and_cited_explanation(app):
 
 
 def test_typical_adult_is_not_high_risk(app):
-    app.choose_preset("Typical adult")
+    app.choose_preset("Typical adult", age=35)
     app.estimate()
     expect(app.risk_metric).to_be_visible(timeout=MODEL_TIMEOUT_MS)
     expect(app.band("High")).to_have_count(0)
@@ -34,7 +34,7 @@ def test_typical_adult_is_not_high_risk(app):
 
 def test_heart_high_risk_and_hypertensive_crisis_banner(app):
     app.choose_condition("Heart disease")
-    app.choose_preset("High-risk example")
+    app.choose_preset("High-risk example", age=63)
     app.set_number("Resting systolic blood pressure (mm Hg)", 190)
     app.estimate()
     expect(app.band("High")).to_be_visible(timeout=MODEL_TIMEOUT_MS)
@@ -83,7 +83,7 @@ def test_answer_shows_claim_check_and_pipeline_xray(app):
 
 
 def test_what_if_panel_shows_simulated_risk(app):
-    app.choose_preset("High-risk example")
+    app.choose_preset("High-risk example", age=52)
     app.estimate()
     expect(app.main.get_by_role("heading", name="What if?")).to_be_visible(timeout=MODEL_TIMEOUT_MS)
     expect(app.main.get_by_test_id("stMetric").filter(has_text="Simulated risk")).to_be_visible()

@@ -26,7 +26,7 @@
 | Skip fairness | **Subgroup check** by age band and sex (recall, precision, false-positive rate), with small-sample caveats |
 | No evaluation | A **40-question golden set** with a retrieval ablation, leave-one-out threshold estimate, citation precision and a gate-2 stress test |
 | Needs an OpenAI key | Runs with **zero keys**. Pluggable providers: Groq (multi-key failover on rate limits), local Ollama (patient data stays on the machine), or an extractive no-LLM mode. Answers stream live, then get replaced by the validated version |
-| Notebook | 94% test coverage across 115 unit and integration tests, 10 Playwright E2E journeys, GitHub Actions CI, and a Dockerfile |
+| Notebook | 94% test coverage across 117 unit and integration tests, 10 Playwright E2E journeys, GitHub Actions CI, and a Dockerfile |
 
 ## Feature map
 
