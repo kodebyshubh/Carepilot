@@ -2,6 +2,8 @@
 
 **Healthcare risk prediction (type 2 diabetes, heart disease) explained per patient by an evaluated, citation-grounded RAG pipeline that refuses to answer when the documents don't support an answer.**
 
+**[Live demo](https://carepilot-live.streamlit.app)** (may take a minute to wake up) · [CI](https://github.com/kodebyshubh/Carepilot/actions)
+
 > Demonstration prototype built as a portfolio project. Not a medical device, not medical advice.
 
 ![Risk assessment](docs/screenshots/risk.png)
