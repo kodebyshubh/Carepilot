@@ -9,6 +9,7 @@ written to disk or logged.
 from __future__ import annotations
 
 import json
+import math
 
 import altair as alt
 import pandas as pd
@@ -161,7 +162,10 @@ def show_claim_check(ans: Answer) -> None:
                     "Sentence": [c.sentence for c in checks],
                     "Cites": [", ".join(map(str, c.cited)) or "none" for c in checks],
                     "Entailment": [
-                        "n/a" if c.entailment is None else f"{c.entailment:.2f}" for c in checks
+                        "n/a"
+                        if c.entailment is None
+                        else f"{math.floor(c.entailment * 100) / 100:.2f}"
+                        for c in checks
                     ],
                     "Supported": ["yes" if c.supported else "check" for c in checks],
                 }
@@ -347,11 +351,11 @@ def pipeline_trace(question: str) -> pd.DataFrame:
     return pd.DataFrame(
         {
             "Passage": [r.passage for r in rows],
-            "Dense rank": [r.dense_rank or "-" for r in rows],
-            "BM25 rank": [r.bm25_rank or "-" for r in rows],
+            "Dense rank": [r.dense_rank or "n/a" for r in rows],
+            "BM25 rank": [r.bm25_rank or "n/a" for r in rows],
             "After fusion (RRF)": [r.rrf_rank for r in rows],
             "Final (reranked)": [r.rerank_rank for r in rows],
-            "Reranker score": [round(r.rerank_score, 2) for r in rows],
+            "Reranker score": [f"{r.rerank_score:.2f}" for r in rows],
         }
     )
 
@@ -379,7 +383,7 @@ def show_xray(ans: Answer) -> None:
             f"{threshold:.2f}: {verdict}."
         )
         st.table(pipeline_trace(ans.question).set_index("Passage"))
-        st.caption("A dash means that stage did not place the passage in its top 20.")
+        st.caption("n/a means that stage did not place the passage in its top 20.")
 
 
 # ---------- Report tab ----------

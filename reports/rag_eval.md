@@ -38,7 +38,7 @@ _(answerable questions far above the threshold omitted)_
 | Provider | Answer rate (answerable) | Key-fact coverage | Citation precision | Sentences with citation | Sentences entailed by citation (NLI) | Abstained on unanswerable | Caught by gate 1 / gate 2 | LLM alone refuses (gate 1 off) | Median latency |
 |---|---|---|---|---|---|---|---|---|---|
 | Extractive (no LLM) | 100% | 78% | 91% | 100% | 100% | 100% | 10 / 0 | n/a | 0.9 s |
-| Groq (qwen/qwen3.8-27b) | 100% | 100% | 90% | 98% | 82% | 100% | 10 / 0 | 80% | 1.6 s |
+| Groq (qwen/qwen3.8-27b) | 100% | 100% | 89% | 98% | 84% | 100% | 10 / 0 | 80% | 1.5 s |
 | Ollama local (qwen2.5:3b) | 83% | 75% | 95% | 86% | n/a | 100% | 10 / 0 | 90% | 16.5 s |
 
 Metric definitions: *key-fact coverage* is the share of expected fact groups found in the answer text (string match on any accepted phrasing); *citation precision* is the share of cited passages that come from a document marked relevant; *sentences with citation* is the share of answer sentences carrying a [n] marker; *LLM alone refuses* re-asks the unanswerable questions with the retrieval gate disabled to see whether the model refuses by itself (defense in depth); *sentences entailed by citation* runs an NLI model (DeBERTa-v3-xsmall) on each sentence against its cited passage, a strict check that can flag faithful paraphrases. String matching undercounts paraphrases, so coverage is a lower bound.

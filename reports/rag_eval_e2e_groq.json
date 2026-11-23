@@ -3,13 +3,13 @@
     "provider": "Groq (qwen/qwen3.8-27b)",
     "answer_rate": 1,
     "fact_coverage": 1,
-    "citation_precision": 0.8972222222222223,
+    "citation_precision": 0.8944444444444445,
     "sentence_citation_coverage": 0.9785714285714285,
-    "nli_supported": 0.8207142857142857,
+    "nli_supported": 0.8393253968253969,
     "abstention_rate_unanswerable": 1,
     "caught_by_retrieval_gate": 10,
     "caught_by_generation_gate": 0,
-    "median_latency_s": 1.605,
+    "median_latency_s": 1.475,
     "llm_only_abstention_rate": 0.8
   },
   "questions": [
@@ -22,8 +22,8 @@
       "citation_precision": 1,
       "sentence_citation_coverage": 0.8571428571428571,
       "nli_supported": 0.7142857142857143,
-      "latency_s": 25.69,
-      "answer": "Common symptoms of diabetes include increased urination, feeling very thirsty, feeling very hungry even after eating, blurred vision, fatigue, sores that do not heal, and frequent infections [1]. The World Health Organization also lists unintentional weight loss as a symptom [5].\n\nSymptoms can vary by type. Type 2 diabetes symptoms often develop slowly and may be mild or unnoticed, potentially including pain, numbness, or tingling in the hands or feet, sexual problems, chest pain, or vision loss [2]. Type 1 diabetes symptoms usually develop quickly over days or weeks and may include unexplained weight loss [3]. In children, common signs include frequent urination, eating more but losing weight, and extreme thirst [3, 4]. Some individuals may first notice signs of diabetic ketoacidosis, such as extreme tiredness, trouble breathing, fruity-smelling breath, fainting, or abdominal pain [4].",
+      "latency_s": 25.93,
+      "answer": "Common symptoms of diabetes include increased urination, feeling very thirsty, feeling very hungry even after eating, blurred vision, fatigue, sores that do not heal, and frequent infections [1]. The World Health Organization also lists unintentional weight loss as a symptom [5].\n\nSymptoms can vary by type. Type 2 diabetes symptoms often develop slowly and may be mild or absent, potentially leading to complications like pain or numbness in the hands or feet, sexual problems, chest pain, or vision loss [2]. Type 1 diabetes symptoms typically develop quickly over days or weeks and may include unexplained weight loss [3]. In children, common signs include frequent urination, increased eating with weight loss, and extreme thirst [3]. Some adults with type 1 diabetes may experience symptoms of diabetic ketoacidosis, such as extreme tiredness, trouble breathing, fruity-smelling breath, fainting, or abdominal pain [4].",
       "llm_only_abstained": null
     },
     {
@@ -35,8 +35,8 @@
       "citation_precision": 0.6666666666666666,
       "sentence_citation_coverage": 1,
       "nli_supported": 1.0,
-      "latency_s": 1.6,
-      "answer": "Warning signs of diabetic ketoacidosis (DKA) in type 1 diabetes include feeling very tired, having trouble breathing, having fruity-smelling breath, fainting from dehydration, and experiencing pain in the abdomen, nausea, or vomiting [1, 2, 3]. DKA is a medical emergency that requires immediate treatment [2, 3].",
+      "latency_s": 1.63,
+      "answer": "Warning signs of diabetic ketoacidosis (DKA) in type 1 diabetes include feeling very tired, having trouble breathing, having fruity-smelling breath, fainting from dehydration, and experiencing abdominal pain, nausea, or vomiting [1, 2, 3]. DKA is a medical emergency that requires immediate treatment [2, 3].",
       "llm_only_abstained": null
     },
     {
@@ -48,7 +48,7 @@
       "citation_precision": 0.3333333333333333,
       "sentence_citation_coverage": 0.75,
       "nli_supported": 0.5,
-      "latency_s": 1.55,
+      "latency_s": 1.73,
       "answer": "No, people with type 2 diabetes do not always notice symptoms. Many individuals have no symptoms, or the symptoms are so mild that they go unnoticed [1]. Symptoms can develop slowly over several years and may be less marked than those of type 1 diabetes [3, 4]. Consequently, the disease may be diagnosed several years after onset, sometimes only after complications have already arisen [3, 4].",
       "llm_only_abstained": null
     },
@@ -60,9 +60,9 @@
       "fact_coverage": 1,
       "citation_precision": 1,
       "sentence_citation_coverage": 1,
-      "nli_supported": 1.0,
-      "latency_s": 1.95,
-      "answer": "Risk factors for type 2 diabetes include being overweight or having obesity [2]. Age is also a factor, with risk increasing for those 35 or older, though it can occur at any age [2]. A family history of diabetes increases likelihood [2]. Certain racial and ethnic groups, including African American, American Indian, Asian American, Hispanic/Latino, and Pacific Islander individuals, are at higher risk [2]. Physical inactivity, such as a sedentary lifestyle or job requiring long periods of sitting, contributes to risk [2]. Having prediabetes or a history of gestational diabetes, or giving birth to a baby weighing 9 pounds or more, are additional risk factors [2]. For children and teens, low birth weight or a parent having gestational diabetes during pregnancy also increases risk [1]. Specific waist circumference measurements indicate higher risk: over 40 inches for men and over 35 inches for non-pregnant women [5].",
+      "nli_supported": 0.875,
+      "latency_s": 1.7,
+      "answer": "Risk factors for type 2 diabetes include being overweight or having obesity [2]. Age is also a factor, with risk increasing for those 35 or older, though children and teens can also develop the condition [2]. Having a family history of diabetes increases likelihood [2]. Certain racial and ethnic groups, including African American, American Indian, Asian American, Hispanic/Latino, and Pacific Islander individuals, are at higher risk [2]. Physical inactivity, whether due to limitations, sedentary lifestyle, or job requirements, contributes to risk [2]. A history of prediabetes or gestational diabetes, or giving birth to a baby weighing 9 pounds or more, are additional risk factors [2]. For children and teens, low birth weight or a parent having gestational diabetes during pregnancy also increases risk [1]. Additionally, having a large waist circumference\u2014more than 40 inches for men or 35 inches for non-pregnant women\u2014is a risk factor, even with a normal BMI [5].",
       "llm_only_abstained": null
     },
     {
@@ -73,9 +73,9 @@
       "fact_coverage": 1,
       "citation_precision": 1,
       "sentence_citation_coverage": 1,
-      "nli_supported": 0.5,
-      "latency_s": 1.48,
-      "answer": "Losing 5 to 7 percent of your starting weight can help prevent or delay type 2 diabetes [1]. For example, if you weigh 200 pounds, this goal would be to lose about 10 to 14 pounds [1].",
+      "nli_supported": 1.0,
+      "latency_s": 1.93,
+      "answer": "Losing 5 to 7 percent of your starting weight may help prevent or delay type 2 diabetes [1]. For example, if you weigh 200 pounds, this goal would be to lose about 10 to 14 pounds [1].",
       "llm_only_abstained": null
     },
     {
@@ -87,8 +87,8 @@
       "citation_precision": 1,
       "sentence_citation_coverage": 1,
       "nli_supported": 0.75,
-      "latency_s": 2.3,
-      "answer": "Prediabetes means your blood sugar levels are higher than normal but not high enough to be diagnosed as diabetes [1]. To lower your chance of developing type 2 diabetes, you should lose weight if needed, become more physically active, and follow a reduced-calorie eating plan [1, 2]. You can also seek support by finding a lifestyle change program through the National Diabetes Prevention Program [2]. Additionally, you should ask your doctor if you should take the diabetes drug metformin to help prevent or delay type 2 diabetes [3].",
+      "latency_s": 1.77,
+      "answer": "Prediabetes means your blood sugar is higher than normal but not yet at diabetes levels, which increases your risk of developing type 2 diabetes [1]. To lower this risk, you should lose weight if needed, become more physically active, and follow a reduced-calorie eating plan [1, 2]. You can also seek support through a lifestyle change program like the National Diabetes Prevention Program [2]. Additionally, ask your doctor if you should take the diabetes drug metformin to help prevent or delay type 2 diabetes [3].",
       "llm_only_abstained": null
     },
     {
@@ -100,7 +100,7 @@
       "citation_precision": 1,
       "sentence_citation_coverage": 1,
       "nli_supported": 1.0,
-      "latency_s": 1.62,
+      "latency_s": 1.52,
       "answer": "The A1C test measures your average blood glucose level over the last 3 months [1].",
       "llm_only_abstained": null
     },
@@ -113,7 +113,7 @@
       "citation_precision": 1,
       "sentence_citation_coverage": 1,
       "nli_supported": 1.0,
-      "latency_s": 1.61,
+      "latency_s": 1.3,
       "answer": "People with diabetes usually have a blood pressure goal of less than 130/80 mm Hg [1, 2]. If you have heart disease or are at high risk for diabetes health problems, your goal may be lower [1]. Your specific goal can depend on other health conditions you have [2].",
       "llm_only_abstained": null
     },
@@ -125,9 +125,9 @@
       "fact_coverage": 1,
       "citation_precision": 1,
       "sentence_citation_coverage": 1,
-      "nli_supported": 1.0,
-      "latency_s": 1.77,
-      "answer": "The diabetes ABCs are key measures to help manage blood glucose, blood pressure, and cholesterol levels [1].\n\n*   **A** stands for the A1C test, which shows your average blood glucose level over the last 3 months [2].\n*   **B** stands for blood pressure, as high levels can damage your heart, kidneys, brain, and eyes [3].\n*   **C** stands for cholesterol, a fat that can build up in blood vessels and lead to heart attacks or strokes [4].\n\nAdditionally, **S** stands for stop smoking, because both smoking and diabetes can narrow blood vessels [5]. Managing these factors may lower the risk of health problems such as heart attack, stroke, kidney disease, blindness, and amputations [1].",
+      "nli_supported": 0.6,
+      "latency_s": 1.87,
+      "answer": "The diabetes ABCs are key measures to help manage blood glucose, blood pressure, and cholesterol levels, which can lower the risk of complications like heart attack, stroke, and kidney disease [1].\n\n*   **A** stands for the A1C test, which shows your average blood glucose level over the last 3 months, with a common goal of below 7% [2].\n*   **B** stands for blood pressure, where high levels can damage the heart, kidneys, brain, and eyes, and a common goal is below 130/80 mm Hg [3].\n*   **C** stands for cholesterol, a fat that can clog blood vessels and lead to heart attacks or strokes if levels are unhealthy [4].\n\nAdditionally, **S** stands for stop smoking, as tobacco use narrows blood vessels and worsens health risks for people with diabetes [5].",
       "llm_only_abstained": null
     },
     {
@@ -138,9 +138,9 @@
       "fact_coverage": 1,
       "citation_precision": 1,
       "sentence_citation_coverage": 1,
-      "nli_supported": 0.5,
-      "latency_s": 1.7,
-      "answer": "People with diabetes are recommended to get at least 150 minutes of moderate-intensity physical activity, such as brisk walking, each week [1]. Additionally, it is suggested to perform muscle-strengthening activities, like wall push-ups or seated arm raises, two days a week [1].",
+      "nli_supported": 0.6666666666666666,
+      "latency_s": 1.35,
+      "answer": "People with diabetes are recommended to get at least 150 minutes of moderate-intensity physical activity, such as brisk walking, each week [1]. Additionally, if possible, they should perform muscle-strengthening activities, like wall push-ups or seated arm raises, two days a week [1]. This level of activity helps lower blood glucose, blood pressure, and cholesterol levels, while also improving sleep and mood [1].",
       "llm_only_abstained": null
     },
     {
@@ -152,7 +152,7 @@
       "citation_precision": 0.6666666666666666,
       "sentence_citation_coverage": 1,
       "nli_supported": 0.5,
-      "latency_s": 1.66,
+      "latency_s": 1.89,
       "answer": "Waist circumference is important for diabetes risk because it serves as an indirect measurement of abdominal fat [1]. Having a large waist circumference is a specific risk factor for developing type 2 diabetes and heart disease, even if a person has a normal body mass index (BMI) [1]. Specifically, men have a higher risk if their waist circumference exceeds 40 inches, while non-pregnant women have a higher risk if it exceeds 35 inches [1]. This measurement helps identify individuals who may be at risk for type 2 diabetes alongside other factors like age, family history, and physical activity levels [3, 4].",
       "llm_only_abstained": null
     },
@@ -165,7 +165,7 @@
       "citation_precision": 0.6666666666666666,
       "sentence_citation_coverage": 1,
       "nli_supported": 0.6666666666666666,
-      "latency_s": 1.45,
+      "latency_s": 1.54,
       "answer": "Type 1 diabetes develops when the body\u2019s immune system destroys the beta cells in the pancreas that produce insulin [1]. Genes and environmental factors may trigger this immune response [1]. While the exact cause and means to prevent it are not fully known [4], research is ongoing to understand these triggers [2].",
       "llm_only_abstained": null
     },
@@ -175,11 +175,11 @@
       "abstained": false,
       "reason": "answered",
       "fact_coverage": 1,
-      "citation_precision": 0.75,
+      "citation_precision": 0.6666666666666666,
       "sentence_citation_coverage": 1,
       "nli_supported": 1.0,
-      "latency_s": 2.25,
-      "answer": "Type 2 diabetes develops when the pancreas does not produce enough insulin and the body has trouble using insulin, a condition known as insulin resistance [1]. This resistance occurs when cells in the muscles, fat, and liver do not respond well to insulin, causing blood glucose levels to rise [1]. While researchers do not fully understand the specific causes of these insulin issues, several factors increase the likelihood of developing the condition [2]. These risk factors include being overweight or obese, being age 35 or older, having a family history of type 2 diabetes, belonging to certain racial or ethnic groups, being physically inactive, smoking, having prediabetes, or having a history of gestational diabetes [2]. Additionally, genetics and lack of exercise are cited as contributing factors [3]. Some of these risk factors, such as age and family history, cannot be changed, but others like weight, activity levels, and smoking habits can be modified to help prevent or delay the disease [4].",
+      "latency_s": 1.63,
+      "answer": "Type 2 diabetes develops when the pancreas does not produce enough insulin and the body has trouble using insulin, a condition known as insulin resistance [1]. This resistance occurs when cells in the muscles, fat, and liver do not respond well to insulin, causing blood glucose levels to rise [1]. While researchers do not fully understand the specific causes of these insulin issues, several factors increase the likelihood of developing the condition [2]. These risk factors include being overweight or obese, having a large waist size, being age 35 or older, having a family history of type 2 diabetes, and belonging to certain racial or ethnic groups such as African American, American Indian, Asian American, Hispanic, Latino, or Pacific Islander [2]. Additionally, lack of physical activity, smoking, having prediabetes, and a history of gestational diabetes or delivering a baby weighing 9 pounds or more contribute to the risk [2]. Genetics, being overweight, and insufficient exercise are also cited as contributing factors [3].",
       "llm_only_abstained": null
     },
     {
@@ -190,9 +190,9 @@
       "fact_coverage": 1,
       "citation_precision": 1,
       "sentence_citation_coverage": 1,
-      "nli_supported": 1.0,
-      "latency_s": 1.73,
-      "answer": "Yes, certain medicines can raise the risk of developing diabetes [1]. These include antipsychotics, antiseizure medicines, beta-blockers, diuretics, glucocorticoids, immunosuppressants, and niacin [1]. Statins, which lower cholesterol, can also slightly increase the chance of developing diabetes, though their benefits in preventing heart disease and stroke generally outweigh this small risk [1]. If you take these types of medications, you may want to ask your primary health care professional if they could affect your risk of developing diabetes [2].",
+      "nli_supported": 0.75,
+      "latency_s": 1.65,
+      "answer": "Yes, certain medicines can raise the risk of developing diabetes [1]. These include antipsychotics, antiseizure medicines, beta-blockers, diuretics, glucocorticoids, immunosuppressants, and niacin [1]. Statins, used to lower cholesterol, can also slightly increase the chance of developing diabetes, though their benefits in preventing heart disease and stroke generally outweigh this small risk [1]. If you take medicines for conditions like high blood pressure or mental health issues, you may want to ask your primary health care professional if your specific medicines could affect your risk [2].",
       "llm_only_abstained": null
     },
     {
@@ -204,8 +204,8 @@
       "citation_precision": 1,
       "sentence_citation_coverage": 1,
       "nli_supported": 1.0,
-      "latency_s": 2.15,
-      "answer": "Risk factors for high blood pressure include age, family history, genetics, race, ethnicity, and sex [1]. Social and economic factors such as income, education, location, job type, stress, discrimination, poverty, and childhood trauma also raise risk [2]. Blood pressure naturally rises with age due to stiffening blood vessels, though risk is increasing among children and teens with overweight or obesity [3]. Other medical conditions that contribute include certain tumors, chronic kidney disease, metabolic syndrome, overweight and obesity, sleep apnea, and thyroid problems [4]. Modifiable lifestyle habits include eating high-salt, low-potassium foods, excessive alcohol or caffeine consumption, physical inactivity, poor sleep, high stress, and the use of stimulants like cocaine or methamphetamine [5].",
+      "latency_s": 1.63,
+      "answer": "Risk factors for high blood pressure include age, family history, genetics, race, ethnicity, and sex [1]. Blood pressure naturally rises with age as blood vessels thicken and stiffen, though risk is also increasing among children and teens due to overweight or obesity [3]. Other medical conditions that raise risk include chronic kidney disease, metabolic syndrome, overweight and obesity, sleep apnea, thyroid problems, and some tumors [4].\n\nLifestyle habits such as eating unhealthy foods high in salt and low in potassium, excessive alcohol or caffeine consumption, lack of physical activity, poor sleep, high stress, and the use of stimulants like cocaine or methamphetamine also increase risk [5]. Additionally, social and economic factors, including income, education level, job type, work stress, discrimination, poverty, and childhood trauma, are linked to higher risk [2].",
       "llm_only_abstained": null
     },
     {
@@ -217,8 +217,8 @@
       "citation_precision": 1,
       "sentence_citation_coverage": 1,
       "nli_supported": 0.5,
-      "latency_s": 1.76,
-      "answer": "Lifestyle changes that help lower high blood pressure include eating a healthy, low-salt diet rich in fruits and vegetables [1, 2, 5]. You should be physically active, aiming for at least 150 minutes of moderate-intensity aerobic activity or 75 minutes of vigorous activity per week, plus strength exercises two or more days a week [1]. Reducing the time you sit each day also helps [1, 5]. Additionally, losing weight if you are overweight or obese is recommended [1, 2, 5]. Other key changes include quitting tobacco or smoking [2, 5], avoiding or limiting alcohol [5], managing stress [5], and getting enough good-quality sleep [5]. While these changes are beneficial, many people with hypertension will still need to take medicine as prescribed by their health care professional [1, 2, 3].",
+      "latency_s": 1.6,
+      "answer": "Lifestyle changes that help lower high blood pressure include eating a healthy, low-salt diet rich in fruits and vegetables [1, 2, 5]. You should be physically active, aiming for at least 150 minutes of moderate-intensity aerobic activity or 75 minutes of vigorous activity per week, plus strength exercises two or more days a week [1]. Reducing the time you sit each day can also help lower blood pressure [5]. Additionally, losing weight if you are overweight or obese is recommended [1, 2, 5]. Other helpful changes include quitting tobacco or smoking [2, 5], avoiding or limiting alcohol [5], managing stress [5], and getting enough good-quality sleep [5]. While these changes are beneficial, many people with hypertension will still need to take medicine as prescribed by their health care professional [1, 2, 3].",
       "llm_only_abstained": null
     },
     {
@@ -230,7 +230,7 @@
       "citation_precision": 1,
       "sentence_citation_coverage": 1,
       "nli_supported": 1.0,
-      "latency_s": 1.37,
+      "latency_s": 1.27,
       "answer": "Hypertension is diagnosed when blood pressure readings are 140/90 mmHg or higher [3]. Specifically, the diagnosis requires that systolic blood pressure is \u2265140 mmHg and/or diastolic blood pressure is \u226590 mmHg on two different days [1].",
       "llm_only_abstained": null
     },
@@ -243,8 +243,8 @@
       "citation_precision": 1,
       "sentence_citation_coverage": 0.75,
       "nli_supported": 0.5,
-      "latency_s": 1.55,
-      "answer": "No, high blood pressure does not always cause symptoms. Most people with hypertension do not feel any symptoms [1]. In fact, people with high blood pressure may not feel symptoms at all, and the only way to know if you have it is to get your blood pressure checked [2]. Symptoms typically only occur when blood pressure is very high, such as 180/120 or higher, and can include severe headaches, chest pain, dizziness, and blurred vision [1].",
+      "latency_s": 1.47,
+      "answer": "No, high blood pressure does not always cause symptoms. Most people with hypertension do not feel any symptoms [1]. In fact, people with high blood pressure may not feel any symptoms at all, and the only way to know if you have it is to get your blood pressure checked [2]. Symptoms typically only occur when blood pressure is very high, such as 180/120 or higher, and can include severe headaches, chest pain, dizziness, and blurred vision [1].",
       "llm_only_abstained": null
     },
     {
@@ -256,8 +256,8 @@
       "citation_precision": 1,
       "sentence_citation_coverage": 1,
       "nli_supported": 1.0,
-      "latency_s": 1.99,
-      "answer": "Uncontrolled hypertension can cause serious damage to the heart, including chest pain (angina), heart attacks, heart failure, and irregular heartbeats that may lead to sudden death [1]. It can also burst or block arteries supplying the brain, resulting in a stroke [1]. Additionally, hypertension can cause kidney damage that leads to kidney failure [1]. If left untreated, it can contribute to other health conditions such as kidney disease and heart disease [2].",
+      "latency_s": 1.43,
+      "answer": "Uncontrolled hypertension can cause serious damage to the heart, including chest pain (angina), heart attacks, heart failure, and irregular heartbeats that may lead to sudden death [1]. It can also burst or block arteries supplying the brain, resulting in a stroke [1]. Additionally, hypertension can cause kidney damage that leads to kidney failure [1]. If left untreated, it can result in other health conditions such as kidney disease and heart disease [2].",
       "llm_only_abstained": null
     },
     {
@@ -268,9 +268,9 @@
       "fact_coverage": 1,
       "citation_precision": 1,
       "sentence_citation_coverage": 1,
-      "nli_supported": 0.6666666666666666,
-      "latency_s": 1.95,
-      "answer": "The DASH eating plan is used to help lower and control high blood pressure [1]. Research indicates that combining the DASH plan with a low-salt diet can be as effective as medication in reducing high blood pressure [1]. Additionally, choosing heart-healthy foods lower in salt and rich in potassium, such as those found in the DASH plan, can help prevent high blood pressure and its complications [2].",
+      "nli_supported": 1.0,
+      "latency_s": 1.31,
+      "answer": "The DASH eating plan is used to help lower and control high blood pressure [1]. It is also recommended as a heart-healthy lifestyle choice to help prevent high blood pressure and its complications [2].",
       "llm_only_abstained": null
     },
     {
@@ -281,9 +281,9 @@
       "fact_coverage": 1,
       "citation_precision": 1,
       "sentence_citation_coverage": 1,
-      "nli_supported": 1.0,
-      "latency_s": 1.83,
-      "answer": "Medicines used to treat high blood pressure include angiotensin-converting enzyme (ACE) inhibitors, angiotensin II receptor blockers (ARBs), calcium channel blockers, and diuretics [1, 2]. ACE inhibitors and ARBs work by relaxing blood vessels and preventing them from narrowing [1, 2]. Calcium channel blockers prevent calcium from entering heart and blood vessel muscle cells, allowing vessels to relax [1, 2]. Diuretics, such as thiazides, remove extra water and sodium from the body to lower blood volume [1, 2]. Providers may prescribe these medicines when lifestyle changes alone are insufficient to control blood pressure [4].",
+      "nli_supported": 0.8,
+      "latency_s": 1.62,
+      "answer": "Medicines used to treat high blood pressure include angiotensin-converting enzyme (ACE) inhibitors, angiotensin II receptor blockers (ARBs), calcium channel blockers, and diuretics [1, 2]. ACE inhibitors and ARBs work by relaxing blood vessels and preventing them from narrowing, which also helps prevent kidney damage [1, 2]. Calcium channel blockers prevent calcium from entering heart and blood vessel muscle cells, allowing the vessels to relax [1, 2]. Diuretics, such as thiazides, remove extra water and sodium from the body to lower blood volume and pressure [1, 2]. Providers may prescribe one or more of these medicines, often in combination, to effectively manage high blood pressure [1, 4].",
       "llm_only_abstained": null
     },
     {
@@ -295,8 +295,8 @@
       "citation_precision": 0.3333333333333333,
       "sentence_citation_coverage": 1,
       "nli_supported": 1.0,
-      "latency_s": 1.68,
-      "answer": "Adults should aim for 7 to 9 hours of sleep per day to support heart health [1]. Not getting enough quality sleep, including frequent nighttime awakenings, may raise the risk of coronary heart disease [3]. Additionally, sleep disorders such as sleep apnea or sleep deprivation are listed as medical conditions that can increase the risk for coronary heart disease [5].",
+      "latency_s": 1.48,
+      "answer": "Adults should aim for 7 to 9 hours of sleep per day to support heart health [1]. Not getting enough quality sleep, including frequent nighttime waking, may raise the risk of coronary heart disease [3]. Additionally, sleep disorders such as sleep apnea or sleep deprivation are listed as medical conditions that can increase the risk for coronary heart disease [5].",
       "llm_only_abstained": null
     },
     {
@@ -308,8 +308,8 @@
       "citation_precision": 1,
       "sentence_citation_coverage": 1,
       "nli_supported": 1.0,
-      "latency_s": 1.68,
-      "answer": "Common symptoms of a heart attack include chest pain, heaviness, or discomfort, which is the most frequent sign [1]. You may also feel pain or discomfort in one or both arms, the back, shoulders, neck, jaw, or above the belly button [1]. Other signs include shortness of breath, excessive sweating, unusual fatigue, nausea, vomiting, lightheadedness, dizziness, and a rapid or irregular heartbeat [1]. Symptoms can vary between individuals and may start slowly or come and go over several hours [2]. Some people, particularly older adults or those with diabetes, may experience a \"silent\" heart attack with no symptoms or only very mild ones [3].",
+      "latency_s": 1.31,
+      "answer": "Common symptoms of a heart attack include chest pain, heaviness, or discomfort, which is the most common sign [1]. You may also feel pain or discomfort in one or both arms, the back, shoulders, neck, jaw, or above the belly button [1]. Other symptoms include shortness of breath, unexplained sweating, unusual fatigue, nausea, vomiting, lightheadedness, dizziness, and a rapid or irregular heartbeat [1]. Symptoms can vary between individuals and may start slowly or come and go over several hours [2]. Some people, particularly older adults or those with diabetes, may experience a \"silent\" heart attack with no symptoms or very mild ones [3].",
       "llm_only_abstained": null
     },
     {
@@ -320,9 +320,9 @@
       "fact_coverage": 1,
       "citation_precision": 1,
       "sentence_citation_coverage": 1,
-      "nli_supported": 0.8,
-      "latency_s": 1.73,
-      "answer": "Call 9-1-1 if you think you might be having a heart attack, even if you are not sure [2]. You should also call 9-1-1 if you are unsure whether your chest pain is angina or a heart attack [1]. Heart attack pain is more serious than angina because it does not go away when you rest or take medicine [1]. Acting fast can limit damage to your heart and save your life [2]. Do not drive yourself to the hospital; an ambulance is the safest way to get to the hospital because EMS personnel can start tests and lifesaving medicines right away [2].",
+      "nli_supported": 1.0,
+      "latency_s": 1.44,
+      "answer": "Call 9-1-1 immediately if you think you might be having a heart attack, even if you are not sure [2]. You should also call 9-1-1 if you are unsure whether your chest pain is angina or a heart attack [1]. Heart attack pain is more serious than angina because it does not go away when you rest or take medicine [1]. Acting fast can limit damage to your heart and save your life [2]. Do not drive yourself to the hospital; an ambulance is the safest way to get to the hospital because EMS personnel can start tests and lifesaving medicines right away [2].",
       "llm_only_abstained": null
     },
     {
@@ -334,8 +334,8 @@
       "citation_precision": 1,
       "sentence_citation_coverage": 1,
       "nli_supported": 1.0,
-      "latency_s": 1.52,
-      "answer": "A silent heart attack is a heart attack that occurs without any symptoms or with very mild symptoms [1]. These events are more common in older adults and in people who have high blood sugar or diabetes [1]. While typical heart attacks often involve chest pain, shortness of breath, or sweating, it is possible to have a heart attack with mild or no symptoms at all [2].",
+      "latency_s": 1.2,
+      "answer": "A silent heart attack is a heart attack that occurs without any symptoms or with very mild symptoms [1]. These events are more common in older adults and in people who have high blood sugar or diabetes [1].",
       "llm_only_abstained": null
     },
     {
@@ -347,8 +347,8 @@
       "citation_precision": 1,
       "sentence_citation_coverage": 1,
       "nli_supported": 0.8571428571428571,
-      "latency_s": 2.69,
-      "answer": "Several lifestyle habits increase the risk of coronary heart disease:\n\n*   **Smoking:** Smoking or long-term exposure to secondhand smoke damages blood vessels [1].\n*   **Stress:** Stress can tighten arteries and may indirectly raise risk by encouraging smoking or overeating high-fat foods [1].\n*   **Unhealthy Eating:** Consuming high amounts of saturated fats and refined carbohydrates can lead to obesity, high cholesterol, and plaque buildup [1].\n*   **Physical Inactivity:** Lack of exercise can worsen risk factors like high blood pressure, diabetes, and obesity [2].\n*   **Excessive Alcohol:** Drinking more than two drinks a day for men or one for women, or binge drinking, can raise blood pressure, cholesterol, and triglycerides [2].\n*   **Poor Sleep:** Not getting enough quality sleep or waking up frequently can cause sharp increases in blood pressure and heart rate [2].\n\nOver time, these unhealthy habits can lead to plaque buildup in the heart's blood vessels [2, 3].",
+      "latency_s": 1.74,
+      "answer": "Several lifestyle habits increase the risk of coronary heart disease:\n\n*   **Smoking:** Smoking or long-term exposure to secondhand smoke damages blood vessels [1].\n*   **Diet:** Consuming high amounts of saturated fats and refined carbohydrates can lead to obesity, high cholesterol, and plaque buildup [1].\n*   **Inactivity:** Being physically inactive can worsen risk factors like high blood pressure, diabetes, and obesity [2].\n*   **Alcohol:** Drinking too much alcohol raises blood pressure, cholesterol, and triglycerides, with binge drinking being a key risk factor [2].\n*   **Sleep:** Not getting enough quality sleep or waking up often can cause sharp increases in blood pressure and heart rate [2].\n*   **Stress:** Stress can tighten arteries and indirectly raise risk by encouraging smoking or unhealthy eating [1].\n\nThese habits contribute to plaque buildup in the heart's blood vessels over time [2, 3].",
       "llm_only_abstained": null
     },
     {
@@ -360,8 +360,8 @@
       "citation_precision": 1,
       "sentence_citation_coverage": 1,
       "nli_supported": 1.0,
-      "latency_s": 1.43,
-      "answer": "Drinking too much alcohol can raise your blood pressure and your risk for heart disease [1]. Specifically, consuming more than two drinks a day for men or one drink a day for women can increase levels of cholesterol and triglycerides [1]. Binge drinking, defined as four or more drinks for women or five or more for men within about two hours, is identified as a key risk factor [1].",
+      "latency_s": 1.66,
+      "answer": "Drinking too much alcohol can raise your blood pressure and your risk for heart disease [1]. Specifically, consuming more than two drinks a day for men or one drink a day for women can increase levels of cholesterol and triglycerides [1]. Binge drinking, defined as four or more drinks for women or five or more drinks for men within about two hours, is identified as a key risk factor for heart disease [1].",
       "llm_only_abstained": null
     },
     {
@@ -373,7 +373,7 @@
       "citation_precision": 0.5,
       "sentence_citation_coverage": 1,
       "nli_supported": 1.0,
-      "latency_s": 1.76,
+      "latency_s": 1.86,
       "answer": "Yes, air pollution can increase the risk of coronary heart disease [1]. It may cause or worsen conditions like high blood pressure and inflammation, which are known risk factors for heart disease [1]. The risk may be higher for older adults, women, and people with diabetes or obesity [1]. Additionally, air pollution is identified as the most significant environmental risk factor for hypertension and associated diseases [3]. Smoke from wildfires can also lead to inflammation that raises the risk for coronary heart disease and its complications [1].",
       "llm_only_abstained": null
     },
@@ -385,8 +385,8 @@
       "fact_coverage": 1,
       "citation_precision": 1,
       "sentence_citation_coverage": 1,
-      "nli_supported": 0.6666666666666666,
-      "latency_s": 1.58,
+      "nli_supported": 1.0,
+      "latency_s": 1.35,
       "answer": "An estimated 1.4 billion adults aged 30\u201379 years worldwide had hypertension in 2024 [1]. This figure represents 33% of the population in that age range [1]. The number of adults with hypertension increased from 650 million in 1990 to 1.4 billion in 2024 [2].",
       "llm_only_abstained": null
     },
@@ -399,7 +399,7 @@
       "citation_precision": 1,
       "sentence_citation_coverage": 1,
       "nli_supported": 0.5,
-      "latency_s": 1.41,
+      "latency_s": 1.36,
       "answer": "According to the World Health Organization, lifestyle changes are the best way to prevent or delay the onset of type 2 diabetes [2]. To help prevent the condition and its complications, people should reach and keep a healthy body weight, stay physically active with at least 150 minutes of moderate exercise each week, eat a healthy diet while avoiding sugar and saturated fat, and not smoke tobacco [2].",
       "llm_only_abstained": null
     },
@@ -412,7 +412,7 @@
       "citation_precision": null,
       "sentence_citation_coverage": null,
       "nli_supported": null,
-      "latency_s": 0.93,
+      "latency_s": 1.02,
       "answer": "This information is not available in the provided documents. Please consult a qualified health professional.",
       "llm_only_abstained": true
     },
@@ -425,7 +425,7 @@
       "citation_precision": null,
       "sentence_citation_coverage": null,
       "nli_supported": null,
-      "latency_s": 1.03,
+      "latency_s": 0.95,
       "answer": "This information is not available in the provided documents. Please consult a qualified health professional.",
       "llm_only_abstained": false
     },
@@ -438,7 +438,7 @@
       "citation_precision": null,
       "sentence_citation_coverage": null,
       "nli_supported": null,
-      "latency_s": 1.0,
+      "latency_s": 1.07,
       "answer": "This information is not available in the provided documents. Please consult a qualified health professional.",
       "llm_only_abstained": true
     },
@@ -451,7 +451,7 @@
       "citation_precision": null,
       "sentence_citation_coverage": null,
       "nli_supported": null,
-      "latency_s": 0.77,
+      "latency_s": 0.82,
       "answer": "This information is not available in the provided documents. Please consult a qualified health professional.",
       "llm_only_abstained": true
     },
@@ -464,7 +464,7 @@
       "citation_precision": null,
       "sentence_citation_coverage": null,
       "nli_supported": null,
-      "latency_s": 0.86,
+      "latency_s": 0.89,
       "answer": "This information is not available in the provided documents. Please consult a qualified health professional.",
       "llm_only_abstained": false
     },
@@ -477,7 +477,7 @@
       "citation_precision": null,
       "sentence_citation_coverage": null,
       "nli_supported": null,
-      "latency_s": 0.85,
+      "latency_s": 0.84,
       "answer": "This information is not available in the provided documents. Please consult a qualified health professional.",
       "llm_only_abstained": true
     },
@@ -490,7 +490,7 @@
       "citation_precision": null,
       "sentence_citation_coverage": null,
       "nli_supported": null,
-      "latency_s": 0.8,
+      "latency_s": 0.82,
       "answer": "This information is not available in the provided documents. Please consult a qualified health professional.",
       "llm_only_abstained": true
     },
@@ -503,7 +503,7 @@
       "citation_precision": null,
       "sentence_citation_coverage": null,
       "nli_supported": null,
-      "latency_s": 1.37,
+      "latency_s": 1.54,
       "answer": "This information is not available in the provided documents. Please consult a qualified health professional.",
       "llm_only_abstained": true
     },
@@ -516,7 +516,7 @@
       "citation_precision": null,
       "sentence_citation_coverage": null,
       "nli_supported": null,
-      "latency_s": 0.92,
+      "latency_s": 1.29,
       "answer": "This information is not available in the provided documents. Please consult a qualified health professional.",
       "llm_only_abstained": true
     },
@@ -529,7 +529,7 @@
       "citation_precision": null,
       "sentence_citation_coverage": null,
       "nli_supported": null,
-      "latency_s": 1.31,
+      "latency_s": 0.83,
       "answer": "This information is not available in the provided documents. Please consult a qualified health professional.",
       "llm_only_abstained": true
     }

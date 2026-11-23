@@ -60,7 +60,13 @@ def main() -> None:
         # .last: the hidden Risk tab also holds a "Sources" header
         expect(main_area.get_by_text("Sources", exact=True).last).to_be_visible()
         expect(idle).to_have_count(0)
-        main_area.get_by_test_id("stExpander").last.click()
+        # Open the claim check and the pipeline X-ray; wait for their tables to render.
+        main_area.get_by_text("Claim check:").last.click()
+        expect(main_area.get_by_text("Entailment").last).to_be_visible()
+        main_area.get_by_text("Pipeline X-ray: how this answer was found").last.click()
+        expect(main_area.get_by_text("Relevance gate").last).to_be_visible()
+        expect(idle).to_have_count(0)
+        page.wait_for_timeout(1_500)  # let the expander open animation finish before capture
         page.screenshot(path=OUT / "ask.png", full_page=True)
 
         main_area.get_by_label("Your question").fill(

@@ -212,11 +212,11 @@ The golden set has 30 answerable questions, labeled with the documents that answ
 
 | Generator | Answer rate | Key-fact coverage | Citation precision | Sentences cited | Sentences entailed (NLI) | Abstained on unanswerable | LLM alone refuses (gate 1 off) | Median latency |
 |---|---|---|---|---|---|---|---|---|
-| **Groq Qwen3.8 27B** | **100%** | **100%** | 90% | 98% | 82% | 100% | 80% | 1.6 s |
+| **Groq Qwen3.8 27B** | **100%** | **100%** | 89% | 98% | 84% | 100% | 80% | 1.5 s |
 | Ollama qwen2.5:3b (local, private) | 83% | 75% | 95% | 86% | not run | 100% | 90% | 16.5 s |
 | Extractive (no LLM) | 100% | 78% | 91% | 100% | 100% (verbatim quotes, a sanity check for the verifier) | 100% | n/a | 0.9 s |
 
-How the three compare: the cloud 27B model covers every expected fact at 1.6 s. The local 3B model keeps patient data on the machine, but it is 10x slower and sometimes refuses answerable questions. The no-LLM mode needs no key and quotes passages verbatim, so it is fully grounded but less complete. The gate-2 stress test shows **defense in depth**: with the retrieval gate switched off, the LLMs alone still refuse 8-9 of 10 unanswerable questions. With both gates on, every unanswerable question in the eval was refused.
+How the three compare: the cloud 27B model covers every expected fact at 1.5 s. The local 3B model keeps patient data on the machine, but it is 10x slower and sometimes refuses answerable questions. The no-LLM mode needs no key and quotes passages verbatim, so it is fully grounded but less complete. The gate-2 stress test shows **defense in depth**: with the retrieval gate switched off, the LLMs alone still refuse 8-9 of 10 unanswerable questions. With both gates on, every unanswerable question in the eval was refused.
 
 ---
 
