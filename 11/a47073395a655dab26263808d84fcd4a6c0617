@@ -1,0 +1,124 @@
+scripts/deploy_space.py
+  s_844951ddc8cef6::t_262ec63d800d70 1-84
+reports/rag_eval.md
+  s_844951ddc8cef6::t_339758e98afc52 38-39,41-42,44
+Dockerfile
+  s_844951ddc8cef6::t_728cfc774f27c3 30-31
+README.md
+  s_844951ddc8cef6::t_4dc0844a215836 21-24,26-27,227-228,238-239,286,299-300,304,307
+  s_844951ddc8cef6::t_c7353d6a61967a 248-250,253
+  s_844951ddc8cef6::t_5caa1ca2d116e2 213-216,219
+reports/rag_eval_e2e_groq.json
+  s_844951ddc8cef6::t_339758e98afc52 1-537
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "autter_version": "2.2.0",
+  "base_commit_sha": "11a47073395a655dab26263808d84fcd4a6c0617",
+  "branch": "main",
+  "prompts": {
+    "s_844951ddc8cef6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "252a332e-55a3-40c3-b7cf-f20c78213b7e",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "kodebyshubh <shubhbohra44@gmail.com>",
+      "messages_url": "cas:bab74b6bc72a7e090829e9e972fa739c8420d61db87bb53ca50512b0027bd92e",
+      "total_additions": 727,
+      "total_deletions": 26,
+      "accepted_lines": 1551,
+      "overriden_lines": 3
+    }
+  },
+  "humans": {
+    "h_2c2a0d0b93dd9b": {
+      "author": "kodebyshubh <shubhbohra44@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_844951ddc8cef6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "252a332e-55a3-40c3-b7cf-f20c78213b7e",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "kodebyshubh <shubhbohra44@gmail.com>",
+      "messages_url": "cas:bab74b6bc72a7e090829e9e972fa739c8420d61db87bb53ca50512b0027bd92e",
+      "stats": {
+        "total_additions": 727,
+        "total_deletions": 26,
+        "accepted_lines": 1551,
+        "overriden_lines": 3,
+        "files": {
+          "Dockerfile": {
+            "total_additions": 2,
+            "total_deletions": 2,
+            "accepted_lines": 2,
+            "overriden_lines": 0
+          },
+          "README.md": {
+            "total_additions": 25,
+            "total_deletions": 19,
+            "accepted_lines": 312,
+            "overriden_lines": 1
+          },
+          "reports/rag_eval.md": {
+            "total_additions": 6,
+            "total_deletions": 5,
+            "accepted_lines": 32,
+            "overriden_lines": 1
+          },
+          "reports/rag_eval_e2e_groq.json": {
+            "total_additions": 537,
+            "total_deletions": 0,
+            "accepted_lines": 537,
+            "overriden_lines": 0
+          },
+          "scripts/deploy_space.py": {
+            "total_additions": 84,
+            "total_deletions": 0,
+            "accepted_lines": 84,
+            "overriden_lines": 0
+          },
+          "zdnd/implementation_plan.md": {
+            "total_additions": 0,
+            "total_deletions": 0,
+            "accepted_lines": 69,
+            "overriden_lines": 0
+          },
+          "zdnd/linkedin_post.md": {
+            "total_additions": 73,
+            "total_deletions": 0,
+            "accepted_lines": 72,
+            "overriden_lines": 1
+          },
+          "zdnd/memory.md": {
+            "total_additions": 0,
+            "total_deletions": 0,
+            "accepted_lines": 35,
+            "overriden_lines": 0
+          },
+          "zdnd/prd.md": {
+            "total_additions": 0,
+            "total_deletions": 0,
+            "accepted_lines": 41,
+            "overriden_lines": 0
+          },
+          "zdnd/project_description.md": {
+            "total_additions": 0,
+            "total_deletions": 0,
+            "accepted_lines": 347,
+            "overriden_lines": 0
+          },
+          "zdnd/submission_email.md": {
+            "total_additions": 0,
+            "total_deletions": 0,
+            "accepted_lines": 20,
+            "overriden_lines": 0
+          }
+        }
+      }
+    }
+  }
+}
