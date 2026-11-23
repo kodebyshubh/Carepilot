@@ -209,8 +209,8 @@ The golden set has 30 answerable questions, labeled with the documents that answ
 | Generator | Answer rate | Key-fact coverage | Citation precision | Sentences cited | Abstained on unanswerable | LLM alone refuses (gate 1 off) |
 |---|---|---|---|---|---|---|
 | Extractive (no LLM) | 100% | 78% | 91% | 100% | 100% | n/a |
-| Ollama qwen2.5:3b (local) | see report | | | | 100% | 90% |
-| Groq Llama 3.3 70B | see report | | | | | |
+| Ollama qwen2.5:3b (local, 16.5 s median) | 83% | 75% | 95% | 86% | 100% | 90% |
+| Groq Llama 3.3 70B | pending | | | | | |
 
 The gate-2 stress test shows **defense in depth**: with the retrieval gate switched off, the LLM alone still refuses 9 of 10 unanswerable questions. Together the gates refused every unanswerable question in the eval.
 

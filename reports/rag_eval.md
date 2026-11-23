@@ -38,6 +38,6 @@ _(answerable questions far above the threshold omitted)_
 | Provider | Answer rate (answerable) | Key-fact coverage | Citation precision | Sentences with citation | Abstained on unanswerable | Caught by gate 1 / gate 2 | LLM alone refuses (gate 1 off) | Median latency |
 |---|---|---|---|---|---|---|---|---|
 | Extractive (no LLM) | 100% | 78% | 91% | 100% | 100% | 10 / 0 | n/a | 0.8 s |
-| Ollama local (qwen2.5:3b) | 77% | 68% | 94% | 77% | 100% | 10 / 0 | 90% | 21.4 s |
+| Ollama local (qwen2.5:3b) | 83% | 75% | 95% | 86% | 100% | 10 / 0 | 90% | 16.5 s |
 
 Metric definitions: *key-fact coverage* is the share of expected fact groups found in the answer text (string match on any accepted phrasing); *citation precision* is the share of cited passages that come from a document marked relevant; *sentences with citation* is the share of answer sentences carrying a [n] marker; *LLM alone refuses* re-asks the unanswerable questions with the retrieval gate disabled to see whether the model refuses by itself (defense in depth). String matching undercounts paraphrases, so coverage is a lower bound.
