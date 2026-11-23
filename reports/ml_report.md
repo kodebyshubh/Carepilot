@@ -43,6 +43,15 @@ At the tuned threshold the selected model catches 89% of positive
 cases (recall) with precision 56%. Threshold rule:
 highest threshold with recall >= 85% on 5-fold out-of-fold training predictions (screening sensitivity target).
 
+### Subgroup check (selected model, tuned threshold, test set)
+| Slice | Group | n | Positives | Recall | Precision | False positive rate | ROC-AUC |
+|---|---|---|---|---|---|---|---|
+| age band | 40-54 | 31 | 16 | 1.00 | 0.64 | 0.60 | 0.76 |
+| age band | 55+ | 8 | 2 | 1.00 | 0.33 | 0.67 | 0.67 |
+| age band | <40 | 115 | 36 | 0.83 | 0.55 | 0.32 | 0.82 |
+
+Groups hold only tens of patients, so differences here are hints to investigate, not evidence of bias. A real deployment would need a larger, representative sample.
+
 | ROC | Calibration | Confusion matrix |
 |---|---|---|
 | ![roc](../models/diabetes/roc.png) | ![cal](../models/diabetes/calibration.png) | ![cm](../models/diabetes/confusion.png) |
@@ -85,6 +94,17 @@ XGBoost scores slightly higher ROC-AUC on the test set (0.956 vs 0.952), but the
 At the tuned threshold the selected model catches 96% of positive
 cases (recall) with precision 77%. Threshold rule:
 highest threshold with recall >= 85% on 5-fold out-of-fold training predictions (screening sensitivity target).
+
+### Subgroup check (selected model, tuned threshold, test set)
+| Slice | Group | n | Positives | Recall | Precision | False positive rate | ROC-AUC |
+|---|---|---|---|---|---|---|---|
+| age band | 40-54 | 23 | 6 | 1.00 | 0.67 | 0.18 | 1.00 |
+| age band | 55+ | 33 | 21 | 0.95 | 0.80 | 0.42 | 0.89 |
+| age band | <40 | 5 | 1 | 1.00 | 1.00 | 0.00 | 1.00 |
+| sex | Female | 20 | 7 | 1.00 | 1.00 | 0.00 | 1.00 |
+| sex | Male | 41 | 21 | 0.95 | 0.71 | 0.40 | 0.94 |
+
+Groups hold only tens of patients, so differences here are hints to investigate, not evidence of bias. A real deployment would need a larger, representative sample.
 
 | ROC | Calibration | Confusion matrix |
 |---|---|---|

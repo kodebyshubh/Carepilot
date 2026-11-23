@@ -39,6 +39,28 @@ def cv_table(comparison: dict) -> str:
     return "\n".join(lines)
 
 
+def _fmt(v: float | None) -> str:
+    return "n/a" if v is None else f"{v:.2f}"
+
+
+def fairness_table(meta: dict) -> str:
+    lines = [
+        "| Slice | Group | n | Positives | Recall | Precision | False positive rate | ROC-AUC |",
+        "|---|---|---|---|---|---|---|---|",
+    ]
+    for slice_name, rows in meta.get("fairness", {}).items():
+        for r in rows:
+            lines.append(
+                f"| {slice_name} | {r['group']} | {r['n']} | {r['positives']} | {_fmt(r['recall'])} | "
+                f"{_fmt(r['precision'])} | {_fmt(r['false_positive_rate'])} | {_fmt(r['roc_auc'])} |"
+            )
+    lines.append(
+        "\nGroups hold only tens of patients, so differences here are hints to investigate, "
+        "not evidence of bias. A real deployment would need a larger, representative sample."
+    )
+    return "\n".join(lines)
+
+
 def disease_section(disease_dir: Path, rel_prefix: str) -> str:
     meta = json.loads((disease_dir / "metadata.json").read_text(encoding="utf-8"))
     comp = json.loads((disease_dir / "metrics.json").read_text(encoding="utf-8"))
@@ -75,6 +97,9 @@ Train {meta["n_train"]} / test {meta["n_test"]} rows, positive rate {meta["posit
 At the tuned threshold the selected model catches {chosen["recall"]["value"]:.0%} of positive
 cases (recall) with precision {chosen["precision"]["value"]:.0%}. Threshold rule:
 {meta["threshold_rule"]}.
+
+### Subgroup check (selected model, tuned threshold, test set)
+{fairness_table(meta)}
 
 | ROC | Calibration | Confusion matrix |
 |---|---|---|

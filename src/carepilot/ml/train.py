@@ -174,6 +174,19 @@ def feature_groups(pipe: Pipeline, spec: DiseaseSpec) -> dict[str, list[int]]:
     return groups
 
 
+def subgroups(X: pd.DataFrame) -> dict[str, np.ndarray]:
+    """Slices for the fairness check. Pima is all women, so only age applies there."""
+    age_col = "Age" if "Age" in X else "age"
+    out = {
+        "age band": pd.cut(X[age_col], [0, 39, 54, 200], labels=["<40", "40-54", "55+"])
+        .astype(str)
+        .to_numpy()
+    }
+    if "sex" in X:
+        out["sex"] = X["sex"].map({0: "Female", 1: "Male"}).to_numpy()
+    return out
+
+
 def train_disease(disease: str) -> dict[str, Any]:
     spec = get_spec(disease)
     X, y = load(disease)
@@ -246,6 +259,10 @@ def train_disease(disease: str) -> dict[str, Any]:
         "n_train": len(X_tr),
         "n_test": len(X_te),
         "positive_rate": float(y.mean()),
+        "fairness": {
+            name: evaluate.subgroup_metrics(y_te_np, test_probas[chosen_label], threshold, groups)
+            for name, groups in subgroups(X_te).items()
+        },
         "trained_utc": datetime.now(UTC).isoformat(timespec="seconds"),
         "versions": {
             "python": platform.python_version(),

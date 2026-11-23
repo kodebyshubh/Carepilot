@@ -27,3 +27,15 @@ def test_bootstrap_ci_contains_point_estimate():
     out = bootstrap_metrics(y, p, 0.5)
     for m in out.values():
         assert m["ci_low"] <= m["value"] <= m["ci_high"]
+
+
+def test_subgroup_metrics_per_group():
+    from carepilot.ml.evaluate import subgroup_metrics
+
+    y = np.array([1, 0, 1, 0, 1, 0])
+    p = np.array([0.9, 0.8, 0.7, 0.1, 0.2, 0.1])
+    groups = np.array(["a", "a", "a", "b", "b", "b"])
+    rows = {r["group"]: r for r in subgroup_metrics(y, p, 0.5, groups)}
+    assert rows["a"]["n"] == 3 and rows["a"]["recall"] == 1.0
+    assert rows["a"]["false_positive_rate"] == 1.0
+    assert rows["b"]["recall"] == 0.0 and rows["b"]["precision"] is None

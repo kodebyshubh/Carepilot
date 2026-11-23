@@ -50,7 +50,38 @@
   "n_train": 614,
   "n_test": 154,
   "positive_rate": 0.3489583333333333,
-  "trained_utc": "2026-11-22T16:12:57+00:00",
+  "fairness": {
+    "age band": [
+      {
+        "group": "40-54",
+        "n": 31,
+        "positives": 16,
+        "recall": 1.0,
+        "precision": 0.64,
+        "false_positive_rate": 0.6,
+        "roc_auc": 0.7625
+      },
+      {
+        "group": "55+",
+        "n": 8,
+        "positives": 2,
+        "recall": 1.0,
+        "precision": 0.3333333333333333,
+        "false_positive_rate": 0.6666666666666666,
+        "roc_auc": 0.6666666666666667
+      },
+      {
+        "group": "<40",
+        "n": 115,
+        "positives": 36,
+        "recall": 0.8333333333333334,
+        "precision": 0.5454545454545454,
+        "false_positive_rate": 0.31645569620253167,
+        "roc_auc": 0.8238396624472574
+      }
+    ]
+  },
+  "trained_utc": "2026-11-23T05:59:42+00:00",
   "versions": {
     "python": "3.11.15",
     "sklearn": "1.9.1",

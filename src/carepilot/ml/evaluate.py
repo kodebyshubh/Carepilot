@@ -69,6 +69,33 @@ def bootstrap_metrics(
     }
 
 
+def subgroup_metrics(
+    y_true: np.ndarray, proba: np.ndarray, threshold: float, groups: np.ndarray
+) -> list[dict[str, float | int | str | None]]:
+    """Recall, precision, false positive rate and AUC per subgroup on the test set.
+
+    Groups are small (tens of patients), so these numbers flag where to look, they do not
+    prove a disparity. n and positives are reported so the reader can judge.
+    """
+    y_true, proba, groups = np.asarray(y_true), np.asarray(proba), np.asarray(groups)
+    rows = []
+    for g in sorted(set(groups.tolist()), key=str):
+        mask = groups == g
+        y, p = y_true[mask], proba[mask]
+        pred = (p >= threshold).astype(int)
+        negatives = (y == 0).sum()
+        rows.append({
+            "group": str(g),
+            "n": int(mask.sum()),
+            "positives": int(y.sum()),
+            "recall": float(recall_score(y, pred, zero_division=0)) if y.sum() else None,
+            "precision": float(precision_score(y, pred, zero_division=0)) if pred.sum() else None,
+            "false_positive_rate": float(((pred == 1) & (y == 0)).sum() / negatives) if negatives else None,
+            "roc_auc": float(roc_auc_score(y, p)) if len(set(y.tolist())) == 2 else None,
+        })  # fmt: skip
+    return rows
+
+
 TARGET_RECALL = 0.85
 
 
