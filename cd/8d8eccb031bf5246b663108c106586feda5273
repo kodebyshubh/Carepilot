@@ -1,0 +1,109 @@
+tests/unit/test_verify.py
+  s_844951ddc8cef6::t_f9d247f43247c0 40-42
+  s_844951ddc8cef6::t_0fed471bbb6b5e 35-39,43-54
+app/streamlit_app.py
+  s_844951ddc8cef6::t_f9d247f43247c0 350-351,382
+  s_844951ddc8cef6::t_ddac4659b15ba4 158,164,168,381
+src/carepilot/core/verify.py
+  s_844951ddc8cef6::t_ab7ae453fbf3c1 57
+  s_844951ddc8cef6::t_1b22e7b0aadfc4 69-74,78-99,101-104
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "autter_version": "2.2.0",
+  "base_commit_sha": "cd8d8eccb031bf5246b663108c106586feda5273",
+  "branch": "main",
+  "prompts": {
+    "s_844951ddc8cef6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "252a332e-55a3-40c3-b7cf-f20c78213b7e",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "kodebyshubh <shubhbohra44@gmail.com>",
+      "messages_url": "cas:58160e3775543a73a6f3f5b3895948fdf1bf179efa2acaa01552223e2b2c6a78",
+      "total_additions": 61,
+      "total_deletions": 13,
+      "accepted_lines": 1073,
+      "overriden_lines": 0
+    }
+  },
+  "humans": {
+    "h_2c2a0d0b93dd9b": {
+      "author": "kodebyshubh <shubhbohra44@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_844951ddc8cef6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "252a332e-55a3-40c3-b7cf-f20c78213b7e",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "kodebyshubh <shubhbohra44@gmail.com>",
+      "messages_url": "cas:58160e3775543a73a6f3f5b3895948fdf1bf179efa2acaa01552223e2b2c6a78",
+      "stats": {
+        "total_additions": 61,
+        "total_deletions": 13,
+        "accepted_lines": 1073,
+        "overriden_lines": 0,
+        "files": {
+          "app/streamlit_app.py": {
+            "total_additions": 7,
+            "total_deletions": 9,
+            "accepted_lines": 435,
+            "overriden_lines": 0
+          },
+          "src/carepilot/core/verify.py": {
+            "total_additions": 33,
+            "total_deletions": 3,
+            "accepted_lines": 33,
+            "overriden_lines": 0
+          },
+          "tests/unit/test_verify.py": {
+            "total_additions": 21,
+            "total_deletions": 1,
+            "accepted_lines": 20,
+            "overriden_lines": 0
+          },
+          "zdnd/implementation_plan.md": {
+            "total_additions": 0,
+            "total_deletions": 0,
+            "accepted_lines": 69,
+            "overriden_lines": 0
+          },
+          "zdnd/linkedin_post.md": {
+            "total_additions": 0,
+            "total_deletions": 0,
+            "accepted_lines": 73,
+            "overriden_lines": 0
+          },
+          "zdnd/memory.md": {
+            "total_additions": 0,
+            "total_deletions": 0,
+            "accepted_lines": 35,
+            "overriden_lines": 0
+          },
+          "zdnd/prd.md": {
+            "total_additions": 0,
+            "total_deletions": 0,
+            "accepted_lines": 41,
+            "overriden_lines": 0
+          },
+          "zdnd/project_description.md": {
+            "total_additions": 0,
+            "total_deletions": 0,
+            "accepted_lines": 347,
+            "overriden_lines": 0
+          },
+          "zdnd/submission_email.md": {
+            "total_additions": 0,
+            "total_deletions": 0,
+            "accepted_lines": 20,
+            "overriden_lines": 0
+          }
+        }
+      }
+    }
+  }
+}
