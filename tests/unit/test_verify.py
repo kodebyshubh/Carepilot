@@ -32,3 +32,23 @@ def test_supported_rate():
     checks = [ClaimCheck("a", (1,), 0.9, True), ClaimCheck("b", (1,), 0.1, False)]
     assert supported_rate(checks) == 0.5
     assert supported_rate([]) is None
+
+
+def test_bullet_sentences_pair_each_item_with_its_intro():
+    from carepilot.core.verify import bullet_sentences
+
+    passage = (
+        "Symptoms of diabetes include:\n\n- feeling very thirsty\n- losing weight unintentionally."
+    )
+    assert bullet_sentences(passage) == [
+        "Symptoms of diabetes include feeling very thirsty.",
+        "Symptoms of diabetes include losing weight unintentionally.",
+    ]
+
+
+def test_bullet_run_without_intro_uses_section_context():
+    from carepilot.core.verify import bullet_sentences
+
+    assert bullet_sentences("- fruity-smelling breath", "DKA symptoms") == [
+        "DKA symptoms fruity-smelling breath."
+    ]

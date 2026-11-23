@@ -54,7 +54,7 @@ def split_claims(answer: str) -> list[tuple[str, tuple[int, ...]]]:
     return claims
 
 
-def premise_windows(passage: str) -> list[str]:
+def premise_windows(passage: str, context: str = "") -> list[str]:
     """The whole passage plus every window of 1-2 consecutive sentences.
 
     NLI models are trained on short premises; given a long, list-heavy passage they can call
@@ -66,12 +66,42 @@ def premise_windows(passage: str) -> list[str]:
         for u in re.split(r"(?<=[.!?])\s+|\n+", flatten_lists(passage))
         if len(u.strip(" -")) >= MIN_SENTENCE_CHARS
     ]
-    windows = [passage, *units, *(f"{a} {b}" for a, b in zip(units, units[1:], strict=False))]
+    windows = [
+        passage,
+        *units,
+        *(f"{a} {b}" for a, b in zip(units, units[1:], strict=False)),
+        *bullet_sentences(passage, context),
+    ]
     return list(dict.fromkeys(windows))
 
 
+def bullet_sentences(passage: str, context: str = "") -> list[str]:
+    """One premise per bullet: "<line introducing the list> <item>".
+
+    NLI judges "Symptoms include: thirst; ...; losing weight unintentionally" as neutral to
+    "Unintentional weight loss is a symptom", but entails it from "Symptoms of diabetes
+    include losing weight unintentionally". A bullet run with no intro line in the chunk
+    (the list started in the previous chunk) uses the section heading as its intro.
+    """
+    out: list[str] = []
+    intro = context
+    for line in passage.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        if line.startswith("- "):
+            item = line[2:].rstrip(".;")
+            out.append(f"{intro.rstrip(':.')} {item}.".strip())
+        else:
+            intro = line
+    return out
+
+
 def verify_claims(answer: str, sources: tuple[Source, ...]) -> list[ClaimCheck]:
-    windows = {s.n: premise_windows(s.text) for s in sources}
+    windows = {
+        s.n: premise_windows(s.text, s.section.split(" > ")[-1] if s.section else s.title)
+        for s in sources
+    }
     claims = split_claims(answer)
     pairs, owners = [], []
     for ci, (text, nums) in enumerate(claims):

@@ -155,19 +155,17 @@ def show_claim_check(ans: Answer) -> None:
             "sentence. It is strict: a faithful paraphrase can be flagged, so treat a flag as "
             "'verify this one', not as 'false'."
         )
-        st.dataframe(
+        st.table(  # static table: small, always rendered (also in screenshots)
             pd.DataFrame(
                 {
                     "Sentence": [c.sentence for c in checks],
                     "Cites": [", ".join(map(str, c.cited)) or "none" for c in checks],
                     "Entailment": [
-                        None if c.entailment is None else round(c.entailment, 2) for c in checks
+                        "n/a" if c.entailment is None else f"{c.entailment:.2f}" for c in checks
                     ],
                     "Supported": ["yes" if c.supported else "check" for c in checks],
                 }
-            ),
-            hide_index=True,
-            width="stretch",
+            ).set_index("Sentence")
         )
 
 
@@ -349,8 +347,8 @@ def pipeline_trace(question: str) -> pd.DataFrame:
     return pd.DataFrame(
         {
             "Passage": [r.passage for r in rows],
-            "Dense rank": [r.dense_rank for r in rows],
-            "BM25 rank": [r.bm25_rank for r in rows],
+            "Dense rank": [r.dense_rank or "-" for r in rows],
+            "BM25 rank": [r.bm25_rank or "-" for r in rows],
             "After fusion (RRF)": [r.rrf_rank for r in rows],
             "Final (reranked)": [r.rerank_rank for r in rows],
             "Reranker score": [round(r.rerank_score, 2) for r in rows],
@@ -380,8 +378,8 @@ def show_xray(ans: Answer) -> None:
             f"4. **Relevance gate:** best reranker score {top:.2f} vs threshold "
             f"{threshold:.2f}: {verdict}."
         )
-        st.dataframe(pipeline_trace(ans.question), hide_index=True, width="stretch")
-        st.caption("Empty rank = that stage did not place the passage in its top 20.")
+        st.table(pipeline_trace(ans.question).set_index("Passage"))
+        st.caption("A dash means that stage did not place the passage in its top 20.")
 
 
 # ---------- Report tab ----------
