@@ -27,8 +27,8 @@ COPY index ./index
 COPY reports ./reports
 RUN uv sync --frozen --no-dev
 
-# Download the embedding and reranker models at build time so the app starts warm.
-RUN python -c "from carepilot.rag.retrieve import Retriever; Retriever.load().search('warm up', k=1)" \
+# Download the embedding, reranker and NLI models at build time so the app starts warm.
+RUN python -c "from carepilot.rag.retrieve import Retriever; from carepilot.core.verify import get_nli; Retriever.load().search('warm up', k=1); get_nli()" \
     && chown -R user:user /app
 
 USER user

@@ -18,9 +18,13 @@
 | Show a risk score | Show **per-patient SHAP drivers**, which feed a **personalized, cited explanation** from NIH and WHO documents |
 | Wire up LangChain with a top-k vector search | Use a hand-written **hybrid retrieval** pipeline (BM25 + dense + RRF) with a **cross-encoder reranker**, with every line explainable |
 | Tell the LLM "say I don't know" | Use **two abstention gates**: a calibrated reranker-score gate and an LLM sentinel. Answers without citations are never shown |
+| Trust that a citation means support | **Verify every sentence with NLI**: a DeBERTa model checks that the cited passage actually entails the claim, and flags the ones it doesn't |
+| Hide how retrieval works | **Pipeline X-ray** shows how BM25, dense search, fusion and the reranker each ranked the passages, and why the gate let the question through |
+| Stop at a risk number | **What-if sliders**: move glucose, BMI or blood pressure and watch the estimate respond (labeled as association, not causation) |
+| Skip fairness | **Subgroup check** by age band and sex (recall, precision, false-positive rate), with small-sample caveats |
 | No evaluation | A **40-question golden set** with a retrieval ablation, leave-one-out threshold estimate, citation precision and a gate-2 stress test |
-| Needs an OpenAI key | Runs with **zero keys**. Pluggable providers: Groq, local Ollama (patient data stays on the machine), or an extractive no-LLM mode |
-| Notebook | 94% test coverage across 94 unit and integration tests, 8 Playwright E2E journeys, GitHub Actions CI, and a Dockerfile |
+| Needs an OpenAI key | Runs with **zero keys**. Pluggable providers: Groq (multi-key failover on rate limits), local Ollama (patient data stays on the machine), or an extractive no-LLM mode. Answers stream live, then get replaced by the validated version |
+| Notebook | 94% test coverage across 115 unit and integration tests, 10 Playwright E2E journeys, GitHub Actions CI, and a Dockerfile |
 
 ## Assessment checklist
 
@@ -206,13 +210,13 @@ The golden set has 30 answerable questions, labeled with the documents that answ
 
 **End-to-end answers:**
 
-| Generator | Answer rate | Key-fact coverage | Citation precision | Sentences cited | Abstained on unanswerable | LLM alone refuses (gate 1 off) |
-|---|---|---|---|---|---|---|
-| Extractive (no LLM) | 100% | 78% | 91% | 100% | 100% | n/a |
-| Ollama qwen2.5:3b (local, 16.5 s median) | 83% | 75% | 95% | 86% | 100% | 90% |
-| Groq Qwen3.8 27B | pending | | | | | |
+| Generator | Answer rate | Key-fact coverage | Citation precision | Sentences cited | Sentences entailed (NLI) | Abstained on unanswerable | LLM alone refuses (gate 1 off) | Median latency |
+|---|---|---|---|---|---|---|---|---|
+| **Groq Qwen3.8 27B** | **100%** | **100%** | 90% | 98% | 82% | 100% | 80% | 1.6 s |
+| Ollama qwen2.5:3b (local, private) | 83% | 75% | 95% | 86% | not run | 100% | 90% | 16.5 s |
+| Extractive (no LLM) | 100% | 78% | 91% | 100% | 100% (verbatim quotes, a sanity check for the verifier) | 100% | n/a | 0.9 s |
 
-The gate-2 stress test shows **defense in depth**: with the retrieval gate switched off, the LLM alone still refuses 9 of 10 unanswerable questions. Together the gates refused every unanswerable question in the eval.
+How the three compare: the cloud 27B model covers every expected fact at 1.6 s. The local 3B model keeps patient data on the machine, but it is 10x slower and sometimes refuses answerable questions. The no-LLM mode needs no key and quotes passages verbatim, so it is fully grounded but less complete. The gate-2 stress test shows **defense in depth**: with the retrieval gate switched off, the LLMs alone still refuse 8-9 of 10 unanswerable questions. With both gates on, every unanswerable question in the eval was refused.
 
 ---
 
@@ -220,8 +224,8 @@ The gate-2 stress test shows **defense in depth**: with the retrieval gate switc
 
 `uv run streamlit run app/streamlit_app.py` opens three tabs:
 
-1. **Risk assessment:** pick diabetes or heart disease, start from a preset or enter values (unmeasured fields can be marked "not measured"). The tab shows the probability, risk band, screening threshold, a SHAP factor chart, and a **personalized explanation**: the patient's top risk-raising factors become focused retrieval queries ("How does high blood glucose affect the risk of type 2 diabetes?"), plus lifestyle and "when to see a doctor" queries. The merged passages produce one cited explanation.
-2. **Ask the documents:** free-text or example questions, an answer with numbered, expandable sources, or an explicit "not available in the documents".
+1. **Risk assessment:** pick diabetes or heart disease, start from a preset or enter values (unmeasured fields can be marked "not measured"). The tab shows the probability, risk band, screening threshold, a SHAP factor chart, and a **personalized explanation**: the patient's top risk-raising factors become focused retrieval queries ("How does high blood glucose affect the risk of type 2 diabetes?"), plus lifestyle and "when to see a doctor" queries. The merged passages produce one cited explanation. **What-if sliders** for the modifiable factors (glucose, BMI, blood pressure; for heart: blood pressure, cholesterol, max heart rate) re-score the patient live.
+2. **Ask the documents:** free-text or example questions, an answer with numbered, expandable sources, or an explicit "not available in the documents". Every answer has a **claim check** (NLI entailment per sentence) and a **pipeline X-ray** (stage-by-stage ranks and the gate decision). LLM answers stream in as a draft, then the validated answer replaces it.
 3. **Model & RAG report:** metrics with CIs, plots, and the RAG evaluation.
 
 | Ask with sources | Abstention + red-flag banner | Report |
@@ -231,7 +235,8 @@ The gate-2 stress test shows **defense in depth**: with the retrieval gate switc
 ## Safety and responsible AI
 
 - **Red-flag detection** runs before anything else: chest pain, stroke signs (FAST), diabetic emergency, BP ≥ 180/120 typed in a question *or entered in the form*, and crisis language. It shows emergency guidance with Indian and US numbers. The rules are transparent and unit-tested; for emergencies, an auditable rule that over-fires is preferable to a model that might miss.
-- **Grounding:** two abstention gates, citation validation, and no uncited LLM text shown.
+- **Grounding:** two abstention gates, citation validation, no uncited LLM text shown, and an NLI check that flags sentences their cited passage does not entail.
+- **Fairness check:** recall, precision and false-positive rate by age band (and sex for heart) on the test set, in [`reports/ml_report.md`](reports/ml_report.md). With one shared threshold, older diabetes patients and men in the heart data get more false alarms (FPR 0.60-0.67 vs 0.32 for under-40s; 0.40 vs 0.00 for women). Groups are tens of patients, so these are flags to investigate, not proof of bias.
 - **Scope:** the prompt forbids dosing and diagnosis. A dosing question is rejected by gate 1 (the documents don't cover dosing).
 - **Privacy:** patient values live only in the Streamlit session; nothing is logged or stored. Choosing Ollama keeps all inference local.
 - **Honesty in the UI:** a standing disclaimer, "population-level estimate, not a diagnosis", and a list of which fields were imputed.
@@ -240,12 +245,12 @@ The gate-2 stress test shows **defense in depth**: with the retrieval gate switc
 
 | Layer | What | Count |
 |---|---|---|
-| Unit | cleaning, validation, metrics and CIs, threshold rule, chunking, RRF, tokenization, citation validation, both abstention gates, provider fallback, red flags, explanation queries, eval metrics | 77 |
-| Integration | real models and index: all retrieval modes, end-to-end answers, the explanation flow, and the **training, report, download, ingest, index and eval pipelines run in temp dirs**, including the tree-model SHAP path | 17 |
-| E2E (Playwright) | page object model + session-scoped server fixture; journeys: risk + cited explanation, low risk, heart + hypertensive-crisis banner, Q&A with source links, abstention, red flag, report tab | 8 |
+| Unit | cleaning, validation, metrics and CIs, threshold rule, subgroup metrics, chunking, RRF, tokenization, citation validation, both abstention gates, streaming, Groq key failover, provider fallback, red flags, explanation queries, what-if, claim splitting, eval metrics | 94 |
+| Integration | real models and index: all retrieval modes, pipeline trace, end-to-end answers, the explanation flow, NLI claim check (quotes pass, fabrications fail), and the **training, report, download, ingest, index and eval pipelines run in temp dirs**, including the tree-model SHAP path | 21 |
+| E2E (Playwright) | page object model + session-scoped server fixture; journeys: risk + cited explanation, low risk, heart + hypertensive-crisis banner, what-if panel, Q&A with source links, claim check + X-ray, abstention, red flag, report tab | 10 |
 
 - Coverage is **94%** (`pytest --cov`; CI fails below 80%).
-- The E2E tests wait on Streamlit's run state instead of fixed sleeps. That fixed a real race, where the form could submit before a preset rerun finished, and the suite passed six consecutive runs.
+- The E2E tests wait on Streamlit's run state instead of fixed sleeps: the status widget must be gone and no stale widgets left from the previous rerun. Dropdown picks retry on a half-open list. Together these fixed real races, such as a form submitting before a preset rerun finished, and the suite passed six consecutive runs.
 - The tests caught two real bugs, both fixed and covered by tests. Tree-model SHAP output (rows × features × classes) was being flattened, which interleaved the classes. A small LLM was appending the sentinel after a valid cited answer, which caused over-abstention.
 - **CI** ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)): ruff format and lint, then unit and integration tests with the coverage gate, then Playwright E2E (artifacts uploaded on failure), then a Docker build.
 
@@ -278,7 +283,7 @@ tests/{unit,integration,e2e}
 
 ## External libraries, models and APIs
 
-- **Pretrained models:** [BAAI/bge-small-en-v1.5](https://huggingface.co/BAAI/bge-small-en-v1.5) (MIT), [cross-encoder/ms-marco-MiniLM-L-6-v2](https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2) (Apache-2.0), Qwen3.8 27B via the [Groq API](https://console.groq.com) (optional), [Qwen2.5-3B-Instruct](https://ollama.com/library/qwen2.5) via Ollama (optional).
+- **Pretrained models:** [BAAI/bge-small-en-v1.5](https://huggingface.co/BAAI/bge-small-en-v1.5) (MIT), [cross-encoder/ms-marco-MiniLM-L-6-v2](https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2) (Apache-2.0), [cross-encoder/nli-deberta-v3-xsmall](https://huggingface.co/cross-encoder/nli-deberta-v3-xsmall) (Apache-2.0, claim check), Qwen3.8 27B via the [Groq API](https://console.groq.com) (optional), [Qwen2.5-3B-Instruct](https://ollama.com/library/qwen2.5) via Ollama (optional).
 - **Libraries:** scikit-learn, XGBoost, SHAP, pandas, NumPy, matplotlib, sentence-transformers, PyTorch (CPU), faiss-cpu, rank-bm25, BeautifulSoup, requests, groq, Streamlit, Altair, pydantic, python-dotenv; dev: pytest, pytest-cov, pytest-playwright, ruff.
 - **External APIs at runtime:** Groq only (optional). Hugging Face Hub downloads the two retrieval models on first run.
 - **No LangChain or LlamaIndex**, by design: the RAG pipeline is about 400 lines of explicit, tested code.
@@ -291,14 +296,15 @@ tests/{unit,integration,e2e}
 - **Golden set:** 40 hand-written questions by one author. Key-fact matching is string-based, so it undercounts paraphrases. The threshold was tuned on the same set (mitigated with leave-one-out).
 - **Corpus:** 10 documents, English only, as of retrieval date. "Not in the documents" does not mean "not true".
 - **Latency:** the cross-encoder adds about 0.7 s on CPU. Local 3B LLM answers take about 20 s on a laptop GPU.
-- **Explanations:** SHAP shows association within the model, not causation.
+- **Explanations:** SHAP and the what-if sliders show association within the model, not causation.
+- **Claim check:** the small NLI model misses some faithful paraphrases (in one probe it scored a correct paraphrase 0.05), so a flag means "verify", not "false".
 
 ## Future improvements
 
-1. Fairness and subgroup analysis (age bands, sex), plus recalibration on local data before any real use.
+1. Larger, representative data for the subgroup check, group-aware threshold review, and recalibration on local data before any real use.
 2. Better imputation (iterative or KNN) compared within CV, and probability calibration (isotonic) if a tree model is ever chosen.
 3. A larger, independently written golden set; LLM-as-judge faithfulness scoring alongside string matching; a held-out split for threshold tuning.
-4. Claim-level grounding checks (NLI between each sentence and its cited passage).
+4. A larger NLI model (DeBERTa-v3-base) or an LLM judge for the claim check; the xsmall model is strict and can flag faithful paraphrases.
 5. Document refresh pipeline with change detection, a bigger multilingual corpus (Hindi), and an IVF/HNSW index when the corpus grows.
 6. Serving: FastAPI service, model registry, drift and calibration monitoring, audit logging without PHI, and alignment with India's DPDP Act and HIPAA.
 
