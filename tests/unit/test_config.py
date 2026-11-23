@@ -11,6 +11,11 @@ def test_settings_default_provider_is_auto(monkeypatch):
     assert config.get_settings().llm_provider == "auto"
 
 
-def test_settings_empty_groq_key_is_none(monkeypatch):
+def test_settings_empty_groq_key_gives_no_keys(monkeypatch):
     monkeypatch.setenv("GROQ_API_KEY", "")
-    assert config.get_settings().groq_api_key is None
+    monkeypatch.delenv("GROQ_API_KEYS", raising=False)
+    assert config.get_settings().groq_api_keys == ()
+
+
+def test_parse_keys_splits_strips_and_dedupes():
+    assert config.parse_keys(" a , b,,'c' ", "b,d", None) == ("a", "b", "c", "d")

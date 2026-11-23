@@ -1,6 +1,6 @@
 """LLM providers behind one tiny interface, plus automatic selection.
 
-  groq       Llama 3.3 70B via Groq's free API (needs GROQ_API_KEY)
+  groq       Qwen3.8 27B via Groq's free API (needs GROQ_API_KEY)
   ollama     a local model through Ollama's HTTP API (no data leaves the machine)
   extractive no LLM at all; the answer is built from retrieved sentences (always works)
 
@@ -37,24 +37,54 @@ class LLM(Protocol):
 
 @dataclass
 class GroqLLM:
-    api_key: str
+    """Groq chat completion with key failover.
+
+    Several keys can be configured (GROQ_API_KEY="k1,k2,..."). Keys are tried in order
+    starting from the last one that worked; a rate-limit (429) or rejected key (401/403)
+    moves on to the next key. Any other error, or running out of keys, raises LLMError and
+    the caller falls back to an extractive answer. Key values are never logged, only their
+    position in the list.
+    """
+
+    api_keys: tuple[str, ...]
     model: str
     name: str = "groq"
+    _active: int = 0  # index of the key that last succeeded
+
+    def _call(self, key: str, system: str, user: str) -> str:
+        from groq import Groq
+
+        client = Groq(api_key=key, timeout=60, max_retries=1)
+        resp = client.chat.completions.create(
+            model=self.model,
+            messages=[{"role": "system", "content": system}, {"role": "user", "content": user}],
+            temperature=TEMPERATURE,
+            max_tokens=MAX_TOKENS,
+        )
+        return resp.choices[0].message.content or ""
 
     def generate(self, system: str, user: str) -> str:
-        from groq import Groq, GroqError
+        from groq import AuthenticationError, GroqError, PermissionDeniedError, RateLimitError
 
-        try:
-            client = Groq(api_key=self.api_key, timeout=60, max_retries=2)
-            resp = client.chat.completions.create(
-                model=self.model,
-                messages=[{"role": "system", "content": system}, {"role": "user", "content": user}],
-                temperature=TEMPERATURE,
-                max_tokens=MAX_TOKENS,
-            )
-        except GroqError as exc:
-            raise LLMError(f"Groq call failed: {type(exc).__name__}") from exc
-        return resp.choices[0].message.content or ""
+        if not self.api_keys:
+            raise LLMError("no Groq API key configured")
+        n = len(self.api_keys)
+        failures: list[str] = []
+        for step in range(n):
+            i = (self._active + step) % n
+            try:
+                text = self._call(self.api_keys[i], system, user)
+            except (RateLimitError, AuthenticationError, PermissionDeniedError) as exc:
+                failures.append(f"key #{i + 1}: {type(exc).__name__}")
+                log.warning(
+                    "Groq key #%d of %d failed (%s), trying next", i + 1, n, type(exc).__name__
+                )
+                continue
+            except GroqError as exc:
+                raise LLMError(f"Groq call failed: {type(exc).__name__}") from exc
+            self._active = i
+            return text
+        raise LLMError("all Groq keys failed: " + "; ".join(failures))
 
     @property
     def label(self) -> str:
@@ -119,10 +149,10 @@ def ollama_available(host: str, model: str) -> bool:
 def get_llm(provider: str | None = None, settings: Settings | None = None) -> LLM:
     s = settings or get_settings()
     choice = (provider or s.llm_provider).lower()
-    if choice == "groq" or (choice == "auto" and s.groq_api_key):
-        if not s.groq_api_key:
+    if choice == "groq" or (choice == "auto" and s.groq_api_keys):
+        if not s.groq_api_keys:
             raise LLMError("LLM_PROVIDER=groq but GROQ_API_KEY is not set")
-        return GroqLLM(s.groq_api_key, s.groq_model)
+        return GroqLLM(s.groq_api_keys, s.groq_model)
     if choice == "ollama" or (choice == "auto" and ollama_available(s.ollama_host, s.ollama_model)):
         return OllamaLLM(s.ollama_host, s.ollama_model)
     if choice in ("extractive", "auto"):

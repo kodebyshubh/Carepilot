@@ -78,7 +78,7 @@ It works with **no API key**: the sidebar shows which answer generator is active
 
 | Generator | Setup | Notes |
 |---|---|---|
-| Groq, Llama 3.3 70B (best quality) | `cp .env.example .env`, then set `GROQ_API_KEY` (free at console.groq.com) | Selected automatically when the key exists |
+| Groq, Qwen3.8 27B (best quality) | `cp .env.example .env`, then set `GROQ_API_KEY` (free at console.groq.com); several comma-separated keys enable automatic failover on rate limits | Selected automatically when a key exists |
 | Ollama, local (private) | `ollama pull qwen2.5:3b`, Ollama running | Patient data never leaves the machine |
 | Extractive (no LLM) | nothing | Quotes the best matching sentences with citations |
 
@@ -156,7 +156,7 @@ The full tables (every model at both thresholds) and the ROC, calibration and co
 from carepilot.ml.predict import predict_risk
 
 r = predict_risk("diabetes", {"Glucose": 165, "BMI": 36.2, "Age": 52})  # omitted fields are imputed
-r.probability, r.band, r.flagged          # 0.75, 'High', True
+r.probability, r.band, r.flagged  # 0.75, 'High', True
 [(f.feature, round(f.contribution, 2)) for f in r.top_factors(3)]
 # [('Glucose', 1.64), ('BMI', 0.31), ('Age', 0.25)]
 ```
@@ -210,7 +210,7 @@ The golden set has 30 answerable questions, labeled with the documents that answ
 |---|---|---|---|---|---|---|
 | Extractive (no LLM) | 100% | 78% | 91% | 100% | 100% | n/a |
 | Ollama qwen2.5:3b (local, 16.5 s median) | 83% | 75% | 95% | 86% | 100% | 90% |
-| Groq Llama 3.3 70B | pending | | | | | |
+| Groq Qwen3.8 27B | pending | | | | | |
 
 The gate-2 stress test shows **defense in depth**: with the retrieval gate switched off, the LLM alone still refuses 9 of 10 unanswerable questions. Together the gates refused every unanswerable question in the eval.
 
@@ -278,7 +278,7 @@ tests/{unit,integration,e2e}
 
 ## External libraries, models and APIs
 
-- **Pretrained models:** [BAAI/bge-small-en-v1.5](https://huggingface.co/BAAI/bge-small-en-v1.5) (MIT), [cross-encoder/ms-marco-MiniLM-L-6-v2](https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2) (Apache-2.0), Llama 3.3 70B via the [Groq API](https://console.groq.com) (optional), [Qwen2.5-3B-Instruct](https://ollama.com/library/qwen2.5) via Ollama (optional).
+- **Pretrained models:** [BAAI/bge-small-en-v1.5](https://huggingface.co/BAAI/bge-small-en-v1.5) (MIT), [cross-encoder/ms-marco-MiniLM-L-6-v2](https://huggingface.co/cross-encoder/ms-marco-MiniLM-L-6-v2) (Apache-2.0), Qwen3.8 27B via the [Groq API](https://console.groq.com) (optional), [Qwen2.5-3B-Instruct](https://ollama.com/library/qwen2.5) via Ollama (optional).
 - **Libraries:** scikit-learn, XGBoost, SHAP, pandas, NumPy, matplotlib, sentence-transformers, PyTorch (CPU), faiss-cpu, rank-bm25, BeautifulSoup, requests, groq, Streamlit, Altair, pydantic, python-dotenv; dev: pytest, pytest-cov, pytest-playwright, ruff.
 - **External APIs at runtime:** Groq only (optional). Hugging Face Hub downloads the two retrieval models on first run.
 - **No LangChain or LlamaIndex**, by design: the RAG pipeline is about 400 lines of explicit, tested code.
