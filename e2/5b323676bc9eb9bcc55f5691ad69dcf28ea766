@@ -1,0 +1,142 @@
+app/streamlit_app.py
+  s_844951ddc8cef6::t_1927a32b10b5ae 299
+  s_844951ddc8cef6::t_96e02ed16277bb 115
+tests/unit/test_answer.py
+  s_844951ddc8cef6::t_378b06c6560a5d 129-153
+tests/e2e/pages.py
+  s_844951ddc8cef6::t_82acf7bded8dc6 75
+  s_844951ddc8cef6::t_80bf06286e2b94 12
+  s_844951ddc8cef6::t_e31798eb31a0ca 43-44
+  s_844951ddc8cef6::t_325f7d4a93b7ac 74
+  s_844951ddc8cef6::t_e49a4af2c0eeb8 46-56,58-61
+  s_844951ddc8cef6::t_798a20e4aa3fac 57,62
+  s_844951ddc8cef6::t_179cb6430512d3 9-10,97
+  s_844951ddc8cef6::t_4d1ff60860c94f 98-100
+src/carepilot/llm/providers.py
+  s_844951ddc8cef6::t_f9b5d3c6a605a0 152-177
+  s_844951ddc8cef6::t_44f27e3cfbb09e 12,14,16,23
+  s_844951ddc8cef6::t_803e53470f7d8e 69-82,92,102,105-119
+src/carepilot/rag/answer.py
+  s_844951ddc8cef6::t_65ac54483534f1 18,149,152-166,170-174,197
+tests/e2e/test_app.py
+  s_844951ddc8cef6::t_179cb6430512d3 73-89
+src/carepilot/core/explain.py
+  s_844951ddc8cef6::t_65ac54483534f1 13-14,95-100,102
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "autter_version": "2.2.0",
+  "base_commit_sha": "e25b323676bc9eb9bcc55f5691ad69dcf28ea766",
+  "branch": "main",
+  "prompts": {
+    "s_844951ddc8cef6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "252a332e-55a3-40c3-b7cf-f20c78213b7e",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "kodebyshubh <shubhbohra44@gmail.com>",
+      "messages_url": "cas:c9b0dcbb2f7791775981296cc230071811b4c9f405590b41edbc9d1e436f6166",
+      "total_additions": 170,
+      "total_deletions": 23,
+      "accepted_lines": 1033,
+      "overriden_lines": 0
+    }
+  },
+  "humans": {
+    "h_2c2a0d0b93dd9b": {
+      "author": "kodebyshubh <shubhbohra44@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_844951ddc8cef6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "252a332e-55a3-40c3-b7cf-f20c78213b7e",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "kodebyshubh <shubhbohra44@gmail.com>",
+      "messages_url": "cas:c9b0dcbb2f7791775981296cc230071811b4c9f405590b41edbc9d1e436f6166",
+      "stats": {
+        "total_additions": 170,
+        "total_deletions": 23,
+        "accepted_lines": 1033,
+        "overriden_lines": 0,
+        "files": {
+          "app/streamlit_app.py": {
+            "total_additions": 2,
+            "total_deletions": 4,
+            "accepted_lines": 2,
+            "overriden_lines": 0
+          },
+          "src/carepilot/core/explain.py": {
+            "total_additions": 9,
+            "total_deletions": 2,
+            "accepted_lines": 102,
+            "overriden_lines": 0
+          },
+          "src/carepilot/llm/providers.py": {
+            "total_additions": 62,
+            "total_deletions": 4,
+            "accepted_lines": 62,
+            "overriden_lines": 0
+          },
+          "src/carepilot/rag/answer.py": {
+            "total_additions": 23,
+            "total_deletions": 3,
+            "accepted_lines": 225,
+            "overriden_lines": 0
+          },
+          "tests/e2e/pages.py": {
+            "total_additions": 32,
+            "total_deletions": 10,
+            "accepted_lines": 28,
+            "overriden_lines": 0
+          },
+          "tests/e2e/test_app.py": {
+            "total_additions": 17,
+            "total_deletions": 0,
+            "accepted_lines": 17,
+            "overriden_lines": 0
+          },
+          "tests/unit/test_answer.py": {
+            "total_additions": 25,
+            "total_deletions": 0,
+            "accepted_lines": 25,
+            "overriden_lines": 0
+          },
+          "zdnd/implementation_plan.md": {
+            "total_additions": 0,
+            "total_deletions": 0,
+            "accepted_lines": 69,
+            "overriden_lines": 0
+          },
+          "zdnd/memory.md": {
+            "total_additions": 0,
+            "total_deletions": 0,
+            "accepted_lines": 35,
+            "overriden_lines": 0
+          },
+          "zdnd/prd.md": {
+            "total_additions": 0,
+            "total_deletions": 0,
+            "accepted_lines": 41,
+            "overriden_lines": 0
+          },
+          "zdnd/project_description.md": {
+            "total_additions": 0,
+            "total_deletions": 0,
+            "accepted_lines": 407,
+            "overriden_lines": 0
+          },
+          "zdnd/submission_email.md": {
+            "total_additions": 0,
+            "total_deletions": 0,
+            "accepted_lines": 20,
+            "overriden_lines": 0
+          }
+        }
+      }
+    }
+  }
+}
