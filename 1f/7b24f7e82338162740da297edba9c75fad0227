@@ -1,0 +1,13 @@
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "autter_version": "2.2.0",
+  "base_commit_sha": "1f7b24f7e82338162740da297edba9c75fad0227",
+  "branch": "main",
+  "prompts": {},
+  "humans": {
+    "h_2c2a0d0b93dd9b": {
+      "author": "kodebyshubh <shubhbohra44@gmail.com>"
+    }
+  }
+}
