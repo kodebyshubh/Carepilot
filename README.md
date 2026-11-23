@@ -8,7 +8,7 @@
 
 ---
 
-## TL;DR for reviewers
+## TL;DR
 
 | What most prototypes do | What this one does |
 |---|---|
@@ -26,21 +26,21 @@
 | Needs an OpenAI key | Runs with **zero keys**. Pluggable providers: Groq (multi-key failover on rate limits), local Ollama (patient data stays on the machine), or an extractive no-LLM mode. Answers stream live, then get replaced by the validated version |
 | Notebook | 94% test coverage across 115 unit and integration tests, 10 Playwright E2E journeys, GitHub Actions CI, and a Dockerfile |
 
-## Assessment checklist
+## Feature map
 
-| Requirement | Where |
+| Capability | Where |
 |---|---|
 | Public healthcare tabular dataset | Pima Indians Diabetes + UCI Cleveland Heart Disease: [`src/carepilot/data/download.py`](src/carepilot/data/download.py), links below |
 | Clean, preprocess, handle missing values, train/test split | [`ml/datasets.py`](src/carepilot/ml/datasets.py), [`ml/train.py`](src/carepilot/ml/train.py) |
 | At least two classification models | Logistic Regression, Random Forest, XGBoost (×2 diseases) |
 | Accuracy, precision, recall, F1, ROC-AUC | [`reports/ml_report.md`](reports/ml_report.md) (+ Brier, CIs, ROC / calibration / confusion plots) |
-| Which model is best and why | [ML results](#part-1-machine-learning) below |
+| Which model is best and why | [ML results](#machine-learning) below |
 | Saved model + prediction function | `models/<disease>/model.joblib`, `predict_risk()` in [`ml/predict.py`](src/carepilot/ml/predict.py) |
 | 5-10 public healthcare documents | 10 NIH / WHO pages: [`rag/ingest.py`](src/carepilot/rag/ingest.py) |
 | Load, clean, chunk, embed | [`rag/ingest.py`](src/carepilot/rag/ingest.py), [`rag/chunking.py`](src/carepilot/rag/chunking.py), [`rag/index.py`](src/carepilot/rag/index.py) |
 | FAISS / ChromaDB | FAISS `IndexFlatIP`: `index/faiss.index` |
 | Retrieve, generate with an LLM, show sources, say when unavailable | [`rag/retrieve.py`](src/carepilot/rag/retrieve.py), [`rag/answer.py`](src/carepilot/rag/answer.py) |
-| Interface (optional) | Streamlit app: [`app/streamlit_app.py`](app/streamlit_app.py), screenshots in [`docs/screenshots`](docs/screenshots) |
+| Interface | Streamlit app: [`app/streamlit_app.py`](app/streamlit_app.py), screenshots in [`docs/screenshots`](docs/screenshots) |
 | Training + indexing code, metrics, limitations | This README, [`reports/`](reports) |
 
 ## Architecture
@@ -104,7 +104,7 @@ Tests: `uv run pytest` (unit + integration), `uv run pytest -m e2e` (Playwright;
 
 ---
 
-## Part 1: Machine learning
+## Machine learning
 
 ### Data
 
@@ -169,7 +169,7 @@ Input validation collects every problem at once, using plausible clinical ranges
 
 ---
 
-## Part 2: RAG system
+## RAG system
 
 ### Corpus (10 public documents)
 
@@ -220,7 +220,7 @@ How the three compare: the cloud 27B model covers every expected fact at 1.5 s. 
 
 ---
 
-## Part 3: Interface
+## Interface
 
 `uv run streamlit run app/streamlit_app.py` opens three tabs:
 

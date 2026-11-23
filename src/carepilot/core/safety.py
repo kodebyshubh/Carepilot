@@ -12,7 +12,7 @@ import re
 from dataclasses import dataclass
 
 DISCLAIMER = (
-    "Demonstration prototype for an AI/ML assessment. Not a medical device and not medical "
+    "Demonstration prototype (portfolio project). Not a medical device and not medical "
     "advice. Risk estimates come from small public research datasets and may not apply to you. "
     "Always consult a qualified health professional."
 )
