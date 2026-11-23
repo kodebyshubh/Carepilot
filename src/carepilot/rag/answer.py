@@ -15,6 +15,7 @@ from __future__ import annotations
 import json
 import logging
 import re
+from collections.abc import Callable
 from dataclasses import dataclass, field
 
 from carepilot.config import INDEX_DIR
@@ -145,13 +146,32 @@ def answer_question(
     llm: LLM,
     k: int = TOP_K,
     threshold: float | None = None,
+    on_token: Callable[[str], None] | None = None,
 ) -> Answer:
     hits = retriever.search(question, k=k, mode="hybrid_rerank")
-    return answer_from_hits(question, hits, llm, threshold)
+    return answer_from_hits(question, hits, llm, threshold, on_token)
+
+
+def _generate(llm: LLM, system: str, user: str, on_token: Callable[[str], None] | None) -> str:
+    """Full completion text. If the provider can stream and a callback is given, the
+    callback receives the growing draft so the UI can show it live. The draft is only a
+    preview: the returned text still goes through every gate and citation check."""
+    stream = getattr(llm, "stream", None)
+    if on_token is None or stream is None:
+        return llm.generate(system, user)
+    text = ""
+    for delta in stream(system, user):
+        text += delta
+        on_token(text)
+    return text
 
 
 def answer_from_hits(
-    question: str, hits: list[Hit], llm: LLM, threshold: float | None = None
+    question: str,
+    hits: list[Hit],
+    llm: LLM,
+    threshold: float | None = None,
+    on_token: Callable[[str], None] | None = None,
 ) -> Answer:
     """Gate, generate, validate. `hits` must be sorted by reranker score, best first."""
     threshold = load_abstain_threshold() if threshold is None else threshold
@@ -174,7 +194,7 @@ def answer_from_hits(
 
     user = f"Question: {question}\n\nPassages:\n{format_context(hits)}"
     try:
-        raw = llm.generate(SYSTEM_PROMPT, user)
+        raw = _generate(llm, SYSTEM_PROMPT, user, on_token)
     except LLMError as exc:
         log.warning("LLM failed, falling back to extractive: %s", exc)
         text, cited = extractive_answer(question, hits)

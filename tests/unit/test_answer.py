@@ -126,3 +126,28 @@ def test_cited_answer_with_appended_sentinel_is_kept():
     ans = answer_question("q", FakeRetriever(HITS), FakeLLM(reply), threshold=-3)
     assert not ans.abstained
     assert SENTINEL not in ans.text and "partial coverage" in ans.reason
+
+
+@dataclass
+class StreamingLLM:
+    chunks: tuple[str, ...]
+    name: str = "streaming"
+
+    def generate(self, system, user):  # pragma: no cover - stream path used
+        raise AssertionError("generate should not be called when streaming")
+
+    def stream(self, system, user):
+        yield from self.chunks
+
+
+def test_streaming_reports_growing_draft_and_validates_final_text():
+    drafts = []
+    llm = StreamingLLM(("Thirst is ", "common [1]", " [9]."))
+    ans = answer_question("q", FakeRetriever(HITS), llm, threshold=-3, on_token=drafts.append)
+    assert drafts == ["Thirst is ", "Thirst is common [1]", "Thirst is common [1] [9]."]
+    assert ans.text == "Thirst is common [1]." and [s.n for s in ans.sources] == [1]
+
+
+def test_no_callback_uses_generate():
+    ans = answer_question("q", FakeRetriever(HITS), FakeLLM("Thirst [1]."), threshold=-3)
+    assert not ans.abstained

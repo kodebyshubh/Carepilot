@@ -10,6 +10,8 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable
+
 from carepilot.llm.providers import LLM
 from carepilot.ml.predict import Factor, RiskResult
 from carepilot.rag.answer import Answer, answer_from_hits
@@ -90,6 +92,11 @@ def explanation_question(result: RiskResult) -> str:
     )
 
 
-def explain_risk(result: RiskResult, retriever: Retriever, llm: LLM) -> Answer:
+def explain_risk(
+    result: RiskResult,
+    retriever: Retriever,
+    llm: LLM,
+    on_token: Callable[[str], None] | None = None,
+) -> Answer:
     hits = gather_passages(retriever, explanation_queries(result))
-    return answer_from_hits(explanation_question(result), hits, llm)
+    return answer_from_hits(explanation_question(result), hits, llm, on_token=on_token)

@@ -70,3 +70,20 @@ def test_report_tab_shows_metrics_and_rag_eval(app):
     expect(app.main.get_by_text(re.compile(r"Logistic Regression selected")).first).to_be_visible()
     expect(app.main.get_by_role("heading", name="RAG evaluation report")).to_be_visible()
     expect(app.main.get_by_test_id("stImage").first).to_be_visible()
+
+
+def test_answer_shows_claim_check_and_pipeline_xray(app):
+    app.tab("Ask the documents")
+    app.ask_example("What are the symptoms of diabetes?")
+    expect(app.main.get_by_text(re.compile(r"Claim check: \d+/\d+"))).to_be_visible(
+        timeout=MODEL_TIMEOUT_MS
+    )
+    app.main.get_by_text("Pipeline X-ray: how this answer was found").click()
+    expect(app.main.get_by_text("Relevance gate")).to_be_visible()
+
+
+def test_what_if_panel_shows_simulated_risk(app):
+    app.choose_preset("High-risk example")
+    app.estimate()
+    expect(app.main.get_by_role("heading", name="What if?")).to_be_visible(timeout=MODEL_TIMEOUT_MS)
+    expect(app.main.get_by_test_id("stMetric").filter(has_text="Simulated risk")).to_be_visible()

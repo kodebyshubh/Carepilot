@@ -22,7 +22,13 @@ from carepilot.core.whatif import MODIFIABLE, what_if
 from carepilot.llm.providers import LLMError, get_llm
 from carepilot.ml.datasets import SPECS, DiseaseSpec
 from carepilot.ml.predict import PatientValidationError, RiskResult, predict_risk
-from carepilot.rag.answer import Answer, Source, answer_question, load_abstain_threshold
+from carepilot.rag.answer import (
+    SENTINEL,
+    Answer,
+    Source,
+    answer_question,
+    load_abstain_threshold,
+)
 from carepilot.rag.retrieve import Retriever
 
 st.set_page_config(page_title="CarePilot", page_icon="🩺", layout="wide")
@@ -97,6 +103,18 @@ def sidebar() -> str:
 def show_red_flags(flags) -> None:
     for f in flags:
         st.error(f"**{f.category}.** {f.message} Emergency numbers: {EMERGENCY_NUMBERS}.")
+
+
+def live_draft(placeholder):
+    """Callback that renders the streaming LLM draft. The final answer is shown only after
+    citation validation, so the draft is labeled as unverified."""
+
+    def render(text: str) -> None:
+        if SENTINEL.startswith(text.strip()[: len(SENTINEL)]) and text.strip():
+            return  # likely an abstention sentinel being typed; don't flash it
+        placeholder.markdown(f"{text} ▌\n\n_Draft, checking citations..._")
+
+    return render
 
 
 def show_answer(ans: Answer) -> None:
@@ -255,10 +273,12 @@ def risk_tab(provider: str) -> None:
     show_what_if(spec, result, entered)
     st.subheader("Why, and what to do: explanation from the documents")
     if "explanation" not in st.session_state:  # Streamlit reruns on every click; compute once
+        draft = st.empty()
         with st.spinner("Retrieving evidence and writing the explanation..."):
             st.session_state["explanation"] = explain_risk(
-                result, load_retriever(), load_llm(provider)
+                result, load_retriever(), load_llm(provider), on_token=live_draft(draft)
             )
+        draft.empty()  # replace the streamed draft with the validated answer below
     show_answer(st.session_state["explanation"])
 
 
@@ -276,7 +296,7 @@ def show_what_if(spec: DiseaseSpec, result: RiskResult, entered: dict) -> None:
         info = spec.features[name]
         value = float(entered[name])
         changes[name] = col.slider(
-            f"{info.label} ({info.unit})",
+            f"What if: {info.label} ({info.unit})",
             min_value=float(info.min_value),
             max_value=float(info.max_value),
             value=value,
@@ -309,8 +329,12 @@ def ask_tab(provider: str) -> None:
         if not question.strip():
             st.info("Type a question or pick an example.")
             return
+        draft = st.empty()
         with st.spinner("Searching the documents..."):
-            st.session_state["qa"] = answer_question(question, load_retriever(), load_llm(provider))
+            st.session_state["qa"] = answer_question(
+                question, load_retriever(), load_llm(provider), on_token=live_draft(draft)
+            )
+        draft.empty()  # replace the streamed draft with the validated answer below
     ans: Answer | None = st.session_state.get("qa")
     if ans is None:
         return

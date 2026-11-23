@@ -9,15 +9,18 @@
 
 from __future__ import annotations
 
+import json
 import logging
+from collections.abc import Callable, Iterator
 from dataclasses import dataclass
-from typing import Protocol
+from typing import Any, Protocol, TypeVar
 
 import requests
 
 from carepilot.config import Settings, get_settings
 
 log = logging.getLogger(__name__)
+T = TypeVar("T")
 
 TEMPERATURE = 0.1  # near-deterministic: we want faithful restatement, not creativity
 MAX_TOKENS = 600
@@ -63,7 +66,20 @@ class GroqLLM:
         )
         return resp.choices[0].message.content or ""
 
-    def generate(self, system: str, user: str) -> str:
+    def _open_stream(self, key: str, system: str, user: str) -> Iterator[Any]:
+        from groq import Groq
+
+        client = Groq(api_key=key, timeout=60, max_retries=1)
+        return client.chat.completions.create(
+            model=self.model,
+            messages=[{"role": "system", "content": system}, {"role": "user", "content": user}],
+            temperature=TEMPERATURE,
+            max_tokens=MAX_TOKENS,
+            stream=True,
+        )
+
+    def _with_failover(self, request: Callable[[str], T]) -> T:
+        """Run request(key) with each key in turn until one is not rate-limited or rejected."""
         from groq import AuthenticationError, GroqError, PermissionDeniedError, RateLimitError
 
         if not self.api_keys:
@@ -73,7 +89,7 @@ class GroqLLM:
         for step in range(n):
             i = (self._active + step) % n
             try:
-                text = self._call(self.api_keys[i], system, user)
+                result = request(self.api_keys[i])
             except (RateLimitError, AuthenticationError, PermissionDeniedError) as exc:
                 failures.append(f"key #{i + 1}: {type(exc).__name__}")
                 log.warning(
@@ -83,8 +99,24 @@ class GroqLLM:
             except GroqError as exc:
                 raise LLMError(f"Groq call failed: {type(exc).__name__}") from exc
             self._active = i
-            return text
+            return result
         raise LLMError("all Groq keys failed: " + "; ".join(failures))
+
+    def generate(self, system: str, user: str) -> str:
+        return self._with_failover(lambda key: self._call(key, system, user))
+
+    def stream(self, system: str, user: str) -> Iterator[str]:
+        """Yield text deltas. Key failover applies when the request is opened."""
+        from groq import GroqError
+
+        events = self._with_failover(lambda key: self._open_stream(key, system, user))
+        try:
+            for event in events:
+                delta = event.choices[0].delta.content if event.choices else None
+                if delta:
+                    yield delta
+        except GroqError as exc:
+            raise LLMError(f"Groq stream failed: {type(exc).__name__}") from exc
 
     @property
     def label(self) -> str:
@@ -116,6 +148,32 @@ class OllamaLLM:
             return resp.json()["message"]["content"]
         except (requests.RequestException, KeyError, ValueError) as exc:
             raise LLMError(f"Ollama call failed: {exc}") from exc
+
+    def stream(self, system: str, user: str) -> Iterator[str]:
+        """Yield text deltas from Ollama's newline-delimited JSON stream."""
+        try:
+            with requests.post(
+                f"{self.host}/api/chat",
+                json={
+                    "model": self.model,
+                    "stream": True,
+                    "messages": [
+                        {"role": "system", "content": system},
+                        {"role": "user", "content": user},
+                    ],
+                    "options": {"temperature": TEMPERATURE, "num_predict": MAX_TOKENS},
+                },
+                timeout=OLLAMA_TIMEOUT_S,
+                stream=True,
+            ) as resp:
+                resp.raise_for_status()
+                for line in resp.iter_lines():
+                    if line:
+                        delta = json.loads(line).get("message", {}).get("content", "")
+                        if delta:
+                            yield delta
+        except (requests.RequestException, ValueError) as exc:
+            raise LLMError(f"Ollama stream failed: {exc}") from exc
 
     @property
     def label(self) -> str:
