@@ -26,6 +26,7 @@ EMBED_MODEL = "BAAI/bge-small-en-v1.5"
 # bge-small recommends this instruction prefix on queries (not on passages) for retrieval.
 EMBED_QUERY_PREFIX = "Represent this sentence for searching relevant passages: "
 RERANK_MODEL = "cross-encoder/ms-marco-MiniLM-L-6-v2"
+NLI_MODEL = "cross-encoder/nli-deberta-v3-xsmall"
 
 
 @dataclass(frozen=True)

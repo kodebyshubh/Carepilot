@@ -30,6 +30,7 @@ from typing import Any
 import numpy as np
 
 from carepilot.config import EVAL_DIR, INDEX_DIR, REPORTS_DIR
+from carepilot.core.verify import supported_rate, verify_claims
 from carepilot.llm.providers import get_llm
 from carepilot.rag.answer import answer_question
 from carepilot.rag.retrieve import MODES, Retriever
@@ -200,6 +201,9 @@ def run_e2e_stage(provider: str | None) -> dict[str, Any]:
                 "sentence_citation_coverage": sentence_citation_coverage(ans.text)
                 if not ans.abstained
                 else None,
+                "nli_supported": (
+                    None if ans.abstained else supported_rate(verify_claims(ans.text, ans.sources))
+                ),
                 "latency_s": round(elapsed, 2),
                 "answer": ans.text,
                 # Gate-2 stress test: the unanswerable question again with the retrieval gate
@@ -224,6 +228,9 @@ def run_e2e_stage(provider: str | None) -> dict[str, Any]:
         "citation_precision": mean(cps) if cps else None,
         "sentence_citation_coverage": mean(r["sentence_citation_coverage"] for r in answered)
         if answered
+        else None,
+        "nli_supported": mean(nli)
+        if (nli := [r["nli_supported"] for r in answered if r["nli_supported"] is not None])
         else None,
         "abstention_rate_unanswerable": mean(r["abstained"] for r in un_rows),
         "caught_by_retrieval_gate": sum("retrieval gate" in r["reason"] for r in un_rows),
@@ -311,15 +318,17 @@ def write_report() -> Path:
         "## 3. End-to-end answers",
         "",
         "| Provider | Answer rate (answerable) | Key-fact coverage | Citation precision | "
-        "Sentences with citation | Abstained on unanswerable | Caught by gate 1 / gate 2 | "
+        "Sentences with citation | Sentences entailed by citation (NLI) | "
+        "Abstained on unanswerable | Caught by gate 1 / gate 2 | "
         "LLM alone refuses (gate 1 off) | Median latency |",
-        "|---|---|---|---|---|---|---|---|---|",
+        "|---|---|---|---|---|---|---|---|---|---|",
     ]
     for path in e2e:
         s = json.loads(path.read_text(encoding="utf-8"))["summary"]
         lines.append(
             f"| {s['provider']} | {_pct(s['answer_rate'])} | {_pct(s['fact_coverage'])} | "
             f"{_pct(s['citation_precision'])} | {_pct(s['sentence_citation_coverage'])} | "
+            f"{_pct(s.get('nli_supported'))} | "
             f"{_pct(s['abstention_rate_unanswerable'])} | {s['caught_by_retrieval_gate']} / "
             f"{s['caught_by_generation_gate']} | {_pct(s.get('llm_only_abstention_rate'))} | "
             f"{s['median_latency_s']:.1f} s |"
@@ -331,7 +340,9 @@ def write_report() -> Path:
         "share of cited passages that come from a document marked relevant; *sentences with "
         "citation* is the share of answer sentences carrying a [n] marker; *LLM alone "
         "refuses* re-asks the unanswerable questions with the retrieval gate disabled to see "
-        "whether the model refuses by itself (defense in depth). String matching "
+        "whether the model refuses by itself (defense in depth); *sentences entailed by "
+        "citation* runs an NLI model (DeBERTa-v3-xsmall) on each sentence against its cited "
+        "passage, a strict check that can flag faithful paraphrases. String matching "
         "undercounts paraphrases, so coverage is a lower bound.",
         "",
     ]
